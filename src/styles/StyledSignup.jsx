@@ -168,18 +168,28 @@ export const Pwagain = styled.div`
   width: 600px;
   height: 67px;
   flex-shrink: 0;
-  fill: #fafafa;
-  stroke-width: 1px;
+  background: #fafafa;
   stroke: #e6e6e6;
-  border-radius: 10px;
+  border: 1px solid #e6e6e6; /* 테두리 색상 */
+  border-radius: 10px; /* 모서리 둥글게 */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* input과 #error를 양 끝으로 배치 */
+  align-items: center;
+
+  #error {
+    font-family: NanumGothic;
+    font-size: 18px;
+    margin-right: 18px;
+  }
+
   input {
-    width: 100%; /* 부모 요소의 너비에 맞춤 */
+    width: 340px;
     height: 100%; /* 부모 요소의 높이에 맞춤 */
     padding-left: 30px; /* 입력 필드의 왼쪽 여백 설정 */
-    border: 1px solid #e6e6e6; /* 테두리 색상 */
-    border-radius: 5px; /* 모서리 둥글게 */
     font-family: NanumGothic; /* 폰트 설정 */
     font-size: 20px;
+    border: transparent;
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.7px;
@@ -197,6 +207,7 @@ export const Pwagain = styled.div`
       line-height: normal;
       letter-spacing: -0.7px;
     }
+  }
 `;
 
 export const Nickname = styled.div`
@@ -339,8 +350,12 @@ export const Livebox = styled.div`
 `;
 
 export const Agree = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  margin-top: -18px;
+  gap: 4px;
   #detail {
-    margin-top: -18px;
     color: #d1d1d1;
     font-family: NanumGothic;
     font-size: 15px;
@@ -349,6 +364,43 @@ export const Agree = styled.div`
     line-height: normal;
     letter-spacing: -0.525px;
     text-align: right;
+  }
+
+  #agree {
+    margin-left: 5px;
+    margin-right: 5px;
+    appearance: none; /* 기본 체크박스 스타일 제거 */
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    border: 2px solid #d1d1d1; /* 테두리 색상 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    background-color: white; /* 기본 배경색 */
+    cursor: pointer;
+
+    &:focus {
+      outline: none; /* 포커스 상태에서도 테두리 제거 */
+    }
+
+    &:checked {
+      background-color: white; /* 배경을 투명하게 유지하거나 색상 설정 */
+      border-color: #ff3434; /* 테두리 색상 변경 */
+      background-image: url("/images/Check.svg"); /* 이미지 경로 설정 */
+      background-size: cover; /* 이미지 크기 설정 */
+      background-position: center; /* 이미지 중앙 정렬 */
+    }
+
+    // &:checked::after {
+    //   content: "";
+    //   display: block;
+    //   width: 6px;
+    //   height: 10px;
+    //   border: solid white;
+    //   border-width: 0 2px 2px 0;
+    //   transform: rotate(45deg);
+    //   margin: 2px auto; /* 중앙에 체크 표시 위치 조정 */
+    //   margin-top: -1px;
+    // }
   }
 `;
 
