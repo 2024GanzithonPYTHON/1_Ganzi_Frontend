@@ -7,19 +7,57 @@ const Signup = () => {
   const [preview, setPreview] = useState(null); // 업로드한 이미지 URL 상태
   const fileInputRef = useRef(null);
 
-  // input 클릭 트리거
-  const handleClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click(); // 숨겨진 input 태그 클릭
+  const [formData, setFormData] = useState({
+    id: "",
+    password: "",
+    confirmPassword: "",
+    nickname: "",
+    // age: "",
+    // location: "",
+  });
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const isFormComplete =
+    Object.entries(formData)
+      .filter(([key]) => key !== "location") // location 필드 제외
+      .every(([, value]) => value.trim() !== "") && // 모든 필드가 채워져 있어야 함
+    formData.password === formData.confirmPassword; // Pw와 Pwagain의 값이 동일해야 함
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    if (name === "password" || name === "confirmPassword") {
+      validatePasswords(
+        name === "password" ? value : formData.password,
+        name === "confirmPassword" ? value : formData.confirmPassword
+      );
     }
   };
 
-  // 파일 선택 처리
+  const validatePasswords = (pw, pwAgain) => {
+    if (pwAgain && pw !== pwAgain) {
+      setErrorMessage("비밀번호가 일치하지 않습니다.");
+    } else if (pwAgain && pw === pwAgain) {
+      setErrorMessage("비밀번호가 일치합니다.");
+    } else {
+      setErrorMessage("");
+    }
+  };
+
+  const handleClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      const previewUrl = URL.createObjectURL(file); // 미리보기 URL 생성
-      setPreview(previewUrl); // 상태에 저장
+      const previewUrl = URL.createObjectURL(file);
+      setPreview(previewUrl);
     }
   };
 
@@ -40,21 +78,48 @@ const Signup = () => {
         </S.Basic>
         <S.Id>
           <S.Putid>
-            <input type="text" placeholder="아이디를 입력하세요" />
+            <input
+              type="text"
+              name="id"
+              placeholder="아이디를 입력하세요"
+              value={formData.id}
+              onChange={handleInputChange}
+            />
           </S.Putid>
           <S.Idcheck>
             <div id="check">중복확인</div>
           </S.Idcheck>
         </S.Id>
         <S.Pw>
-          <input type="password" placeholder="비밀번호를 입력하세요" />
+          <input
+            type="password"
+            name="password"
+            placeholder="비밀번호를 입력하세요"
+            value={formData.password}
+            onChange={handleInputChange}
+          />
         </S.Pw>
         <S.Pwagain>
-          <input type="password" placeholder="비밀번호를 한 번 더 입력하세요" />
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="비밀번호를 한 번 더 입력하세요"
+            value={formData.confirmPassword}
+            onChange={handleInputChange}
+          />
+          <div id="error">
+            {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
+          </div>
         </S.Pwagain>
         <S.Nickname>
           <S.Putnick>
-            <input type="text" placeholder="닉네임을 입력하세요" />
+            <input
+              type="text"
+              name="nickname"
+              placeholder="닉네임을 입력하세요"
+              value={formData.nickname}
+              onChange={handleInputChange}
+            />
           </S.Putnick>
           <S.Nickcheck>
             <div id="check">중복확인</div>
@@ -77,6 +142,7 @@ const Signup = () => {
         </S.And>
         <S.Agree>
           <div id="detail">위치 서비스 제공에 동의합니다</div>
+          <input type="checkbox" name="agree" id="agree" />
         </S.Agree>
         <S.Profile>
           <div id="title">프로필 사진</div>
@@ -103,7 +169,9 @@ const Signup = () => {
             onChange={handleFileChange}
           />
         </S.Image>
-        <S.Go>
+        <S.Go
+          style={{ backgroundColor: isFormComplete ? "#FF3434" : "#D3D3D3" }}
+        >
           <div id="signup">회원가입 하기</div>
         </S.Go>
       </S.Infbox>
