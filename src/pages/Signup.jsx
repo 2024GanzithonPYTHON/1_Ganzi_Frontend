@@ -4,6 +4,16 @@ import { useNavigate } from "react-router-dom";
 import * as S from "../styles/StyledSignup";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
+  const goback = () => {
+    navigate(-1);
+  };
+
+  const gosearch = () => {
+    navigate("/search");
+  };
+
   // 연령대 상태
   const [isAgeOpen, setIsAgeOpen] = useState(false);
   const [selectedAge, setSelectedAge] = useState(null);
@@ -95,7 +105,7 @@ const Signup = () => {
           />
           <div id="homename">메인홈</div>
         </S.Home>
-        <S.Search>
+        <S.Search onClick={gosearch}>
           <img
             id="search"
             src={`${process.env.PUBLIC_URL}/images/Search-none.svg`}
@@ -149,6 +159,7 @@ const Signup = () => {
             id="back"
             src={`${process.env.PUBLIC_URL}/images/Back.svg`}
             alt="뒤로가기"
+            onClick={goback}
           />
           <div id="name">회원가입</div>
         </S.Title>

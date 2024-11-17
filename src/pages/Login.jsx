@@ -10,6 +10,14 @@ const Login = () => {
     navigate("/signup");
   };
 
+  const goback = () => {
+    navigate(-1);
+  };
+
+  const gosearch = () => {
+    navigate("/search");
+  };
+
   return (
     <L.Box>
       <L.Nav>
@@ -22,7 +30,7 @@ const Login = () => {
           />
           <div id="homename">메인홈</div>
         </L.Home>
-        <L.Search>
+        <L.Search onClick={gosearch}>
           <img
             id="search"
             src={`${process.env.PUBLIC_URL}/images/Search-none.svg`}
@@ -84,6 +92,7 @@ const Login = () => {
               id="back"
               src={`${process.env.PUBLIC_URL}/images/Back.svg`}
               alt="뒤로가기"
+              onClick={goback}
             />
           </L.Back>
           <L.Login>
