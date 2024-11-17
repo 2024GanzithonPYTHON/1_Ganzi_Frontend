@@ -1,5 +1,151 @@
 import { styled } from "styled-components";
 
+export const Box = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 836px;
+  text-align: center;
+  position: relative;
+  margin: 0 auto;
+  min-height: 100vh;
+`;
+
+export const Nav = styled.div`
+  display: flex;
+  width: 113px;
+  min-height: 100vh;
+  background: #fff;
+  flex-direction: column;
+  gap: 30px;
+  text-align: center;
+  align-items: center;
+  position: relative; /* 자식 요소를 기준으로 위치 지정 가능 */
+`;
+
+export const Profile = styled.div`
+  margin-top: 47px;
+  width: 76.166px;
+  height: 76.166px;
+  flex-shrink: 0;
+  border-radius: 50%; /* 둥근 모서리를 50%로 설정해 원 모양 생성 */
+  background: gray;
+`;
+
+export const Home = styled.div`
+  width: 44.865px;
+  flex-shrink: 0;
+
+  #homename {
+    color: #ff3434;
+    font-family: NanumGothic;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.525px;
+  }
+`;
+
+export const Search = styled.div`
+  flex-shrink: 0;
+
+  #search {
+    width: 51px;
+  }
+
+  #searchname {
+    color: #b7b7b7;
+    font-family: NanumGothic;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.525px;
+  }
+`;
+
+export const Review = styled.div`
+  flex-shrink: 0;
+
+  #review {
+    width: 42px;
+  }
+
+  #reviewname {
+    color: #b7b7b7;
+    font-family: NanumGothic;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.525px;
+  }
+`;
+
+export const Recom = styled.div`
+  flex-shrink: 0;
+
+  #recom {
+    width: 34px;
+  }
+
+  #recomname {
+    color: #b7b7b7;
+    font-family: NanumGothic;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.525px;
+  }
+`;
+
+export const Fav = styled.div`
+  flex-shrink: 0;
+
+  #fav {
+    width: 39px;
+  }
+
+  #favname {
+    color: #b7b7b7;
+    font-family: NanumGothic;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.525px;
+  }
+`;
+
+export const My = styled.div`
+  flex-shrink: 0;
+
+  #my {
+    width: 46.437px;
+  }
+
+  #myname {
+    color: #b7b7b7;
+    font-family: NanumGothic;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.525px;
+  }
+`;
+
+export const Set = styled.div`
+  position: absolute; /* 부모 컨테이너(Nav)를 기준으로 위치 조정 */
+  bottom: 67px; /* 바닥에서 67px 위로 이동 */
+  left: 50%; /* 가로 중앙 정렬 */
+  transform: translateX(-50%); /* 중앙 정렬 보정 */
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+`;
+
 export const Container = styled.div`
   position: relative;
   margin: 0 auto;
@@ -309,15 +455,116 @@ export const Agetitle = styled.div`
   }
 `;
 
-export const Agebox = styled.div`
+export const DropdownContainer = styled.div`
+  position: relative;
+  background: #fafafa;
+  border-width: 1px;
+  border: #e6e6e6;
   width: 277px;
   height: 67px;
-  flex-shrink: 0;
-  border: 1px solid #e6e6e6; /* 테두리 색상 */
-  background: #fafafa;
-  stroke-width: 1px;
-  stroke: #e6e6e6;
   border-radius: 10px;
+  flex-shrink: 0;
+`;
+
+export const DropdownHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px; /* 내부 여백 조정 */
+  width: 100%; /* 부모 컨테이너 너비에 맞춤 */
+  height: 100%; /* 부모 컨테이너 높이에 맞춤 */
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #d2d2d2;
+  font-family: NanumGothic;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.7px;
+
+  &:hover {
+    border-color: #ff3434;
+  }
+`;
+
+export const DropdownList = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  z-index: 100;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* 스크롤 제거 및 모든 항목 표시 */
+  max-height: none; /* 제한 제거 */
+`;
+
+export const DropdownItem = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  color: #272727;
+  font-family: NanumGothic;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.7px;
+  &:hover {
+    background: #f9f9f9;
+  }
+
+  input[type="radio"] {
+    margin-right: 10px;
+    appearance: none; /* 기본 라디오 버튼 제거 */
+    border: 2px solid #ccc;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    outline: none;
+    display: inline-block;
+    position: relative;
+    background-color: #fff;
+    cursor: pointer;
+
+    /* 선택되지 않았을 때 */
+    &:hover {
+      border-color: #ff3434;
+    }
+
+    /* 선택된 상태 */
+    &:checked {
+      border: 2px solid #ff3434; /* 테두리를 빨간색으로 */
+      background-color: #ff3434; /* 안쪽 빨간색 채우기 */
+    }
+
+    /* 선택된 상태의 내부 표시 */
+    &:checked::before {
+      content: "";
+      display: block;
+      width: 8px;
+      height: 8px;
+      background: #fff; /* 안쪽 흰색 점 */
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &.selected {
+    background: #ffeded;
+    color: #ff3434;
+  }
 `;
 
 export const Live = styled.div`
@@ -404,7 +651,7 @@ export const Agree = styled.div`
   }
 `;
 
-export const Profile = styled.div`
+export const Prof = styled.div`
   #title {
     color: #797979;
     font-family: NanumGothic;
