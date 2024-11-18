@@ -1,102 +1,113 @@
 import React, { useRef } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as S from "../styles/StyledSearch";
+import * as F from "../styles/StyledFav";
 
-const Search = () => {
+const Favorite = () => {
   const navigate = useNavigate();
 
   const goback = () => {
     navigate(-1);
   };
 
-  const gofav = () => {
-    navigate("/favorite");
+  const gosearch = () => {
+    navigate("/search");
   };
 
   return (
-    <S.Box>
-      <S.Nav>
-        <S.Profile></S.Profile>
-        <S.Home>
+    <F.Box>
+      <F.Nav>
+        <F.Profile></F.Profile>
+        <F.Home>
           <img
             id="home"
             src={`${process.env.PUBLIC_URL}/images/Home-none.svg`}
             alt="홈"
           />
           <div id="homename">메인홈</div>
-        </S.Home>
-        <S.Search>
+        </F.Home>
+        <F.Search onClick={gosearch}>
           <img
             id="search"
-            src={`${process.env.PUBLIC_URL}/images/Search.svg`}
+            src={`${process.env.PUBLIC_URL}/images/Search-none.svg`}
             alt="검색"
           />
           <div id="searchname">검색하기</div>
-        </S.Search>
-        <S.Review>
+        </F.Search>
+        <F.Review>
           <img
             id="review"
             src={`${process.env.PUBLIC_URL}/images/Review-none.svg`}
             alt="리뷰"
           />
           <div id="reviewname">리뷰 작성</div>
-        </S.Review>
-        <S.Recom>
+        </F.Review>
+        <F.Recom>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}
             alt="추천"
           />
           <div id="recomname">추천장소</div>
-        </S.Recom>
-        <S.Fav onClick={gofav}>
+        </F.Recom>
+        <F.Fav>
           <img
             id="fav"
-            src={`${process.env.PUBLIC_URL}/images/Fav-none.svg`}
+            src={`${process.env.PUBLIC_URL}/images/Fav.svg`}
             alt="즐겨찾기"
           />
           <div id="favname">즐겨찾기</div>
-        </S.Fav>
-        <S.My>
+        </F.Fav>
+        <F.My>
           <img
             id="my"
             src={`${process.env.PUBLIC_URL}/images/My-none.svg`}
             alt="마이"
           />
           <div id="myname">마이페이지</div>
-        </S.My>
-        <S.Set>
+        </F.My>
+        <F.Set>
           <img
             id="setting"
             src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
             alt="설정"
           />
-        </S.Set>
-      </S.Nav>
-      <S.Container>
-        <S.Title>
+        </F.Set>
+      </F.Nav>
+      <F.Container>
+        <F.Title>
           <img
             id="back"
             src={`${process.env.PUBLIC_URL}/images/Back.svg`}
             alt="뒤로가기"
             onClick={goback}
           />
-          <div id="name">검색하기</div>
-        </S.Title>
-        <S.Det>
-          <S.Searchbar>
-            <input id="search" type="text" placeholder="검색어를 입력하세요" />
+          <div id="name">즐겨찾기</div>
+        </F.Title>
+        <F.Side>
+          <div id="type">전체 폴더</div>
+        </F.Side>
+        <F.List>
+          <F.Folder>
+            <img id="image" src="" alt="" />
+            <div id="folder">폴더명</div>
+          </F.Folder>
+          <F.Hr></F.Hr>
+          <F.New>
             <img
-              id="cancel"
-              src={`${process.env.PUBLIC_URL}/images/Cancel.svg`}
-              alt="지우기"
+              id="newfolder"
+              src={`${process.env.PUBLIC_URL}/images/NewFolder.svg`}
+              alt="새로운"
             />
-          </S.Searchbar>
-        </S.Det>
-        {/* <S.Category></S.Category> */}
-      </S.Container>
-    </S.Box>
+            <div id="new">새 폴더 만들기</div>
+          </F.New>
+          <F.Edit>
+            <div id="detail">폴더 수정/삭제하기</div>
+          </F.Edit>
+        </F.List>
+      </F.Container>
+    </F.Box>
   );
 };
-export default Search;
+
+export default Favorite;
