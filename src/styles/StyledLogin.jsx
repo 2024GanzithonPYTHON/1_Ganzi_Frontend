@@ -334,6 +334,8 @@ export const Signin = styled.div`
   justify-content: center;
   text-align: center;
   #login {
+    background: transparent;
+    border: transparent;
     color: #fff;
     font-family: NanumGothic;
     font-size: 23px;

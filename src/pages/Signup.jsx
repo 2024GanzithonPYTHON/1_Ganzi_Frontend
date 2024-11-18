@@ -14,6 +14,10 @@ const Signup = () => {
     navigate("/search");
   };
 
+  const gofav = () => {
+    navigate("/favorite");
+  };
+
   // 연령대 상태
   const [isAgeOpen, setIsAgeOpen] = useState(false);
   const [selectedAge, setSelectedAge] = useState(null);
@@ -129,7 +133,7 @@ const Signup = () => {
           />
           <div id="recomname">추천장소</div>
         </S.Recom>
-        <S.Fav>
+        <S.Fav onClick={gofav}>
           <img
             id="fav"
             src={`${process.env.PUBLIC_URL}/images/Fav-none.svg`}

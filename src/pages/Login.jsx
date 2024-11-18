@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as L from "../styles/StyledLogin";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,6 +17,33 @@ const Login = () => {
 
   const gosearch = () => {
     navigate("/search");
+  };
+
+  const gofav = () => {
+    navigate("/favorite");
+  };
+
+  // 상태값으로 아이디와 비밀번호 관리
+  const [userId, setUserId] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // 폼 제출 기본 동작 방지
+
+    try {
+      const response = await axios.post("/users/login", {
+        id: userId,
+        password: password,
+      });
+
+      if (response.status === 200) {
+        alert("로그인 성공!");
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("로그인 실패", error);
+      alert("로그인에 실패했습니다. 아이디와 비밀번호를 확인하세요.");
+    }
   };
 
   return (
@@ -54,7 +82,7 @@ const Login = () => {
           />
           <div id="recomname">추천장소</div>
         </L.Recom>
-        <L.Fav>
+        <L.Fav onClick={gofav}>
           <img
             id="fav"
             src={`${process.env.PUBLIC_URL}/images/Fav-none.svg`}
@@ -100,33 +128,39 @@ const Login = () => {
           </L.Login>
         </L.Title>
         <L.Infbox>
-          <L.Id>
-            <div id="name1">아이디</div>
-          </L.Id>
-          <L.Putid>
-            <input type="text" placeholder="아이디를 입력하세요" />
-          </L.Putid>
-          <L.Pw>
-            <div id="name2">비밀번호</div>
-          </L.Pw>
-          <L.Putpw>
-            <input type="password" placeholder="비밀번호를 입력하세요" />
-          </L.Putpw>
-          <L.Hr />
-          <L.Signin>
-            <div id="login">로그인</div>
-          </L.Signin>
-          <L.Signup onClick={gosignup}>
+          <form onSubmit={handleSubmit}>
+            <L.Id>
+              <div id="name1">아이디</div>
+            </L.Id>
+            <L.Putid>
+              <input
+                type="text"
+                placeholder="아이디를 입력하세요"
+                value={userId}
+                onChange={(e) => setUserId(e.target.value)}
+              />
+            </L.Putid>
+            <L.Pw>
+              <div id="name2">비밀번호</div>
+            </L.Pw>
+            <L.Putpw>
+              <input
+                type="password"
+                placeholder="비밀번호를 입력하세요"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </L.Putpw>
+            <L.Hr />
+            <L.Signin>
+              <button type="submit" id="login">
+                로그인
+              </button>
+            </L.Signin>
+          </form>
+          <L.Signup onClick={() => navigate("/signup")}>
             <div id="signup">회원가입</div>
           </L.Signup>
-          {/* <L.Find>
-          <L.Idfind>
-            <div id="idfind">아이디 찾기</div>
-          </L.Idfind>
-          <L.Pwfind>
-            <div id="pwfind">비밀번호 찾기</div>
-          </L.Pwfind>
-        </L.Find> */}
         </L.Infbox>
       </L.Container>
     </L.Box>
