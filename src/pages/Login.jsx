@@ -23,8 +23,12 @@ const Login = () => {
     navigate("/favorite");
   };
 
+  const gomy = () => {
+    navigate("/my");
+  };
+
   // 상태값으로 아이디와 비밀번호 관리
-  const [userId, setUserId] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
@@ -32,7 +36,7 @@ const Login = () => {
 
     try {
       const response = await axios.post("/users/login", {
-        id: userId,
+        username: username,
         password: password,
       });
 
@@ -90,7 +94,7 @@ const Login = () => {
           />
           <div id="favname">즐겨찾기</div>
         </L.Fav>
-        <L.My>
+        <L.My onClick={gomy}>
           <img
             id="my"
             src={`${process.env.PUBLIC_URL}/images/My-none.svg`}
@@ -136,8 +140,8 @@ const Login = () => {
               <input
                 type="text"
                 placeholder="아이디를 입력하세요"
-                value={userId}
-                onChange={(e) => setUserId(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </L.Putid>
             <L.Pw>
