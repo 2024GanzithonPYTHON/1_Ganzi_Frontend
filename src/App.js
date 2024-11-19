@@ -5,6 +5,7 @@ import GlobalStyle from "./pages/GlobalStyles";
 import Signup from "./pages/Signup";
 import Search from "./pages/Search";
 import Favorite from "./pages/Favorite";
+import My from "./pages/My";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/search" element={<Search />} />
         <Route path="/favorite" element={<Favorite />} />
+        <Route path="/my" element={<My />} />
       </Routes>
     </BrowserRouter>
   );

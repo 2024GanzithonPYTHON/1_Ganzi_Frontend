@@ -187,6 +187,12 @@ export const Infbox = styled.div`
   margin-top: 30px;
   padding: 60px;
   gap: 25px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
 `;
 
 export const Basic = styled.div`
@@ -717,5 +723,7 @@ export const Go = styled.div`
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.805px;
+    border: transparent;
+    background: transparent;
   }
 `;

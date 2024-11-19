@@ -54,7 +54,7 @@ export const Search = styled.div`
   }
 
   #searchname {
-    color: #ff3434;
+    color: #b7b7b7;
     font-family: NanumGothic;
     font-size: 15px;
     font-style: normal;
@@ -126,7 +126,7 @@ export const My = styled.div`
   }
 
   #myname {
-    color: #b7b7b7;
+    color: #ff3434;
     font-family: NanumGothic;
     font-size: 15px;
     font-style: normal;
@@ -181,65 +181,107 @@ export const Title = styled.div`
   }
 `;
 
-export const Det = styled.div`
+export const Infbox = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  gap: 31px;
+  justify-content: center;
   align-items: center;
-  //   justify-content: center;
 `;
 
-export const Searchbar = styled.div`
-  margin-top: 40px;
-  width: 650px;
-  height: 76px;
+export const Img = styled.div`
+  width: 143px;
+  height: 143px;
   flex-shrink: 0;
-  border-radius: 197px;
-  background: #fafafa;
+  background: #d9d9d9;
+  border-radius: 50%; /* 둥근 모서리를 50%로 설정해 원 모양 생성 */
+`;
+
+export const Name = styled.div`
+  color: #797979;
+  font-family: NanumGothic;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -1.4px;
+`;
+
+export const Inf = styled.div`
   display: flex;
-  flex=direction: row;
-  justify-content: space-between; /* 양 끝 정렬 */
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+`;
+
+export const Age = styled.div`
+  width: 121.111px;
+  height: 53.827px;
+  flex-shrink: 0;
+  border-radius: 138.271px;
+  border: 0.702px solid #e1e1e1;
+  display: flex;
+  background: #f3f3f3;
   align-items: center;
+  justify-content: center;
 
-  #search {
-    flex: 1; /* 입력 박스가 가로로 최대 공간 차지 */
-    border: none; /* 테두리 제거 */
-    background: none; /* 배경 제거 */
-    outline: none; /* 포커스 시 외곽선 제거 */
-    // color: #cacaca;
+  div {
+    color: #797979;
+    text-align: center;
     font-family: NanumGothic;
-    font-size: 23px;
+    font-size: 17px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     line-height: normal;
-    letter-spacing: -0.805px;
-    margin-left: 48px;
-
-    /* placeholder 스타일 */
-    &::placeholder {
-      color: #cacaca;
-    }
-  }
-
-  #cancel {
-    width: 35px;
-    height: 35px;
-    flex-shrink: 0;
-    margin-right: 20px;
-  }
-
-  #go {
-    width: 35px;
-    height: 35px;
-    flex-shrink: 0;
-    margin-right: 45px;
+    letter-spacing: -0.595px;
   }
 `;
 
-export const Searchname = styled.div`
+export const Live = styled.div`
+  width: 121.111px;
+  height: 53.827px;
+  flex-shrink: 0;
+  border-radius: 138.271px;
+  border: 0.702px solid #e1e1e1;
+  background: #f3f3f3;
   display: flex;
-  margin-top: 40px;
-  margin-left: 49px;
-  #recent {
+  align-items: center;
+  justify-content: center;
+
+  div {
+    color: #797979;
+    text-align: center;
+    font-family: NanumGothic;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.595px;
+  }
+`;
+
+export const Hr = styled.div`
+  margin-top: 8px;
+  width: 720px;
+  height: 2px;
+  background: #f3f3f3;
+`;
+
+export const Manage = styled.div`
+  margin-top: 30px;
+  width: 600px;
+  height: 102px;
+  flex-shrink: 0;
+  background: #fff;
+  //   borde-width: 2.78px;
+  border: 1px solid #e6e6e6;
+  display: flex;
+  align-items: center;
+
+  div {
+    margin-left: 60px;
     color: #797979;
     font-family: NanumGothic;
     font-size: 25px;
@@ -250,48 +292,71 @@ export const Searchname = styled.div`
   }
 `;
 
-export const Hr = styled.div`
-  width: 720px;
-  height: 2px;
-  margin-top: 28px;
-  background: #f3f3f3;
-`;
-
-export const Recentlist = styled.div`
+export const Edit = styled.div`
+  width: 600px;
+  height: 102px;
+  flex-shrink: 0;
+  background: #fff;
+  //   stroke-width: 0.784px;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
   display: flex;
-  flex-direction: column;
-`;
-
-export const Recent = styled.div`
-  display: flex;
-  flex-direction: row;
   align-items: center;
-  height: 109px;
-  width: 100%;
 
-  #icon {
-    margin-left: 49px;
-    width: 45px;
-    height: 45px;
-    flex-shrink: 0;
-  }
-
-  #information {
+  div {
+    margin-left: 60px;
     color: #797979;
     font-family: NanumGothic;
-    font-size: 27px;
+    font-size: 25px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    letter-spacing: -0.945px;
-    margin-left: 32px;
+    letter-spacing: -0.875px;
   }
+`;
 
-  #delete {
-    width: 35px;
-    height: 35px;
-    flex-shrink: 0;
-    margin-right: 80px;
-    margin-left: auto;
+export const Logout = styled.div`
+  width: 600px;
+  height: 102px;
+  flex-shrink: 0;
+  background: #fff;
+  //   stroke-width: 0.784px;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+
+  div {
+    margin-left: 60px;
+    color: #797979;
+    font-family: NanumGothic;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.875px;
+  }
+`;
+
+export const Delete = styled.div`
+  width: 600px;
+  height: 102px;
+  flex-shrink: 0;
+  background: #fff;
+  //   stroke-width: 0.784px;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+
+  div {
+    margin-left: 60px;
+    color: #797979;
+    font-family: NanumGothic;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.875px;
   }
 `;
