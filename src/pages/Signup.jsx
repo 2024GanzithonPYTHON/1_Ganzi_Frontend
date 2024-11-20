@@ -56,9 +56,7 @@ const Signup = () => {
     password &&
     passwordConfirm &&
     nickname &&
-    profilePicture &&
     ageGroup &&
-    region &&
     password === passwordConfirm;
 
   // 사는 지역 선택 핸들러 (Placeholder)
@@ -121,10 +119,10 @@ const Signup = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!isFormComplete) {
-      alert("모든 필드를 채워주세요.");
-      return;
-    }
+    // if (!isFormComplete) {
+    //   alert("모든 필드를 채워주세요.");
+    //   return;
+    // }
 
     try {
       const response = await axios.post(
@@ -136,12 +134,9 @@ const Signup = () => {
           nickname: nickname,
           profilePicture: profilePicture,
           ageGroup: ageGroup,
-          region: region,
+          region: "서울시",
         },
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
           withCredentials: true, // 쿠키 및 인증 정보 포함
         }
       );
@@ -255,9 +250,9 @@ const Signup = () => {
                   required
                 />
               </S.Putid>
-              <S.Idcheck>
+              {/* <S.Idcheck>
                 <div id="check">중복확인</div>
-              </S.Idcheck>
+              </S.Idcheck> */}
             </S.Id>
             <S.Pw>
               <input
@@ -295,9 +290,9 @@ const Signup = () => {
                   required
                 />
               </S.Putnick>
-              <S.Nickcheck>
+              {/* <S.Nickcheck>
                 <div id="check">중복확인</div>
-              </S.Nickcheck>
+              </S.Nickcheck> */}
             </S.Nickname>
             <S.And>
               {/* 연령대 드롭다운 */}

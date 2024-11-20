@@ -1,11 +1,16 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as M from "../styles/StyledMy";
 import axios from "axios";
 
 const My = () => {
   const navigate = useNavigate();
+  // State 선언
+  const [profilePic, setProfilePic] = useState(""); // 프로필 사진 URL
+  const [nickname, setNickname] = useState(""); // 닉네임
+  const [ageGroup, setAgeGroup] = useState(""); // 연령대
+  const [region, setRegion] = useState(""); // 거주지
 
   const gosignup = () => {
     navigate("/signup");
@@ -21,6 +26,75 @@ const My = () => {
 
   const gofav = () => {
     navigate("/favorite");
+  };
+
+  function getCookie(name) {
+    const cookies = document.cookie.split(";"); // 쿠키 문자열을 ";"로 나눔
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim(); // 쿠키의 앞뒤 공백 제거
+      if (cookie.startsWith(`${name}=`)) {
+        return cookie.substring(name.length + 1); // "name=" 이후의 값 반환
+      }
+    }
+    return null; // 쿠키가 없으면 null 반환
+  }
+  console.log(document.cookie);
+
+  const jsessionId = getCookie("JSESSIONID"); // JSESSIONID 가져오기
+  console.log("현재 쿠키에 저장된 JSESSIONID:", jsessionId);
+
+  useEffect(() => {
+    // Axios 기본 설정 (쿠키 자동 포함)
+    axios.defaults.withCredentials = true;
+
+    // 프로필 사진 호출
+    axios
+      .get("https://go-farming.shop/users/profile/profile-picture", {
+        headers: {
+          Cookie: `JSESSIONID=${jsessionId}`,
+        },
+      })
+      .then((response) => {
+        setProfilePic(response.data.message); // message 값에서 이미지 URL 저장
+      })
+      .catch((error) => console.error("프로필 사진 로드 실패:", error));
+
+    // 닉네임 호출
+    axios
+      .get("https://go-farming.shop/users/profile/nickname")
+      .then((response) => {
+        setNickname(response.data.message); // message 값에서 닉네임 저장
+      })
+      .catch((error) => console.error("닉네임 로드 실패:", error));
+
+    // 연령대 호출
+    axios
+      .get("https://go-farming.shop/users/profile/age-group")
+      .then((response) => {
+        setAgeGroup(response.data.message); // message 값에서 연령대 저장
+      })
+      .catch((error) => console.error("연령대 로드 실패:", error));
+
+    // 거주지 호출
+    axios
+      .get("https://go-farming.shop/users/profile/region")
+      .then((response) => {
+        setRegion(response.data.message); // message 값에서 거주지 저장
+      })
+      .catch((error) => console.error("거주지 로드 실패:", error));
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post("https://go-farming.shop/users/logout");
+      console.log(response.data.message); // 성공 메시지 출력
+      alert("로그아웃 성공!");
+      // 추가적으로 로그아웃 이후 처리 (예: 페이지 이동)
+      window.location.href = "/login"; // 로그아웃 후 로그인 페이지로 이동
+    } catch (error) {
+      console.error("로그아웃 실패:", error);
+      alert("로그아웃에 실패했습니다. 다시 시도해주세요.");
+    }
   };
 
   return (
@@ -94,14 +168,22 @@ const My = () => {
           <div id="name">마이페이지</div>
         </M.Title>
         <M.Infbox>
-          <M.Img></M.Img>
-          <M.Name></M.Name>
+          <M.Img>
+            {profilePic ? (
+              <img src={profilePic} alt="프로필" />
+            ) : (
+              "이미지 로딩 중..."
+            )}
+          </M.Img>
+          <M.Name>
+            {nickname ? <h2>{nickname}</h2> : "닉네임 로딩 중..."}
+          </M.Name>
           <M.Inf>
             <M.Age>
-              <div>연령대</div>
+              <div>{ageGroup ? `${ageGroup}대` : "로딩 중..."}</div>
             </M.Age>
             <M.Live>
-              <div>거주지</div>
+              <div>{region || "로딩 중..."}</div>
             </M.Live>
           </M.Inf>
           <M.Hr />
@@ -111,7 +193,7 @@ const My = () => {
           <M.Edit>
             <div>회원정보 수정</div>
           </M.Edit>
-          <M.Logout>
+          <M.Logout onClick={handleLogout}>
             <div>로그아웃</div>
           </M.Logout>
           <M.Delete>

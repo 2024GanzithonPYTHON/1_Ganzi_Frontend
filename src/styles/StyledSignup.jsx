@@ -7,7 +7,7 @@ export const Box = styled.div`
   text-align: center;
   position: relative;
   margin: 0 auto;
-  min-height: 100vh;
+  height: 1483px;
 `;
 
 export const Nav = styled.div`
@@ -226,7 +226,7 @@ export const Id = styled.div`
 `;
 
 export const Putid = styled.div`
-  width: 402px;
+  width: 600px;
   height: 67px;
   flex-shrink: 0;
   fill: #fafafa;
@@ -261,7 +261,6 @@ export const Putid = styled.div`
 `;
 
 export const Idcheck = styled.div`
-  width: 175px;
   height: 67px;
   flex-shrink: 0;
   background: #ff3434;
@@ -369,7 +368,7 @@ export const Nickname = styled.div`
 `;
 
 export const Putnick = styled.div`
-  width: 402px;
+  width: 600px;
   height: 67px;
   flex-shrink: 0;
   fill: #fafafa;
