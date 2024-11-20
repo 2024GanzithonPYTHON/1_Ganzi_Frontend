@@ -7,7 +7,7 @@ export const Box = styled.div`
   text-align: center;
   position: relative;
   margin: 0 auto;
-  min-height: 100vh;
+  height: 1483px;
 `;
 
 export const Nav = styled.div`
@@ -275,8 +275,8 @@ export const Manage = styled.div`
   height: 102px;
   flex-shrink: 0;
   background: #fff;
-  //   borde-width: 2.78px;
   border: 1px solid #e6e6e6;
+  border-radius: 10px;
   display: flex;
   align-items: center;
 

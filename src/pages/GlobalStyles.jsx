@@ -11,7 +11,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: #f0f0f0; /* 원하는 회색으로 설정 */
     margin: 0;
-    padding: 0;height: 100%;  /* 화면 높이를 100%로 설정 */
+    padding: 0;
+    width: 100%;
+    height: 100%;  /* 화면 높이를 100%로 설정 */
     overflow-x: hidden;  /* 가로 스크롤 방지 */
   }
 

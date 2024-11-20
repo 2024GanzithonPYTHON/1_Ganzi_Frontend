@@ -35,12 +35,18 @@ const Login = () => {
     e.preventDefault(); // 폼 제출 기본 동작 방지
 
     try {
-      const response = await axios.post("/users/login", {
-        username: username,
-        password: password,
-      });
+      const response = await axios.post(
+        "https://go-farming.shop/users/login",
+        {
+          username: username,
+          password: password,
+        },
+        {
+          withCredentials: true, // 쿠키 포함
+        }
+      );
 
-      if (response.status === 200) {
+      if (response.status === 200 || 201) {
         alert("로그인 성공!");
         navigate("/home");
       }

@@ -2,9 +2,11 @@ import React, { useRef } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as F from "../styles/StyledFav";
+import Modal from "./FavoriteModal";
 
 const Favorite = () => {
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
   const goback = () => {
     navigate(-1);
@@ -18,8 +20,12 @@ const Favorite = () => {
     navigate("/my");
   };
 
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
+
   return (
     <F.Box>
+      <Modal isOpen={showModal} onClose={closeModal} /> {/* 모달 추가 */}
       <F.Nav>
         <F.Profile></F.Profile>
         <F.Home>
@@ -97,7 +103,7 @@ const Favorite = () => {
             <div id="folder">폴더명</div>
           </F.Folder>
           <F.Hr></F.Hr>
-          <F.New>
+          <F.New onClick={openModal}>
             <img
               id="newfolder"
               src={`${process.env.PUBLIC_URL}/images/NewFolder.svg`}

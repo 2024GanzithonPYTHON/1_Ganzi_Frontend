@@ -7,7 +7,7 @@ export const Box = styled.div`
   text-align: center;
   position: relative;
   margin: 0 auto;
-  min-height: 100vh;
+  height: 1483px;
 `;
 
 export const Nav = styled.div`
