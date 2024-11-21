@@ -107,7 +107,7 @@ const Main = () => {
         <M.Home>
           <img
             id="home"
-            src={`${process.env.PUBLIC_URL}/images/Home-none.svg`}
+            src={`${process.env.PUBLIC_URL}/images/Home.svg`}
             alt="홈"
           />
           <div id="homename">메인홈</div>
@@ -139,7 +139,7 @@ const Main = () => {
         <M.Fav onClick={gofav}>
           <img
             id="fav"
-            src={`${process.env.PUBLIC_URL}/images/Fav.svg`}
+            src={`${process.env.PUBLIC_URL}/images/Fav-none.svg`}
             alt="즐겨찾기"
           />
           <div id="favname">즐겨찾기</div>

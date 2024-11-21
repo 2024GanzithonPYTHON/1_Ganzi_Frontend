@@ -22,6 +22,10 @@ const Search = () => {
     navigate("/recommend");
   };
 
+  const gohome = () => {
+    navigate("/");
+  };
+
   const [recentSearches, setRecentSearches] = useState([]); // 검색어 목록 상태
   const [searchInput, setSearchInput] = useState(""); // 현재 검색어 입력 상태
 
@@ -49,7 +53,7 @@ const Search = () => {
     <S.Box>
       <S.Nav>
         <S.Profile></S.Profile>
-        <S.Home>
+        <S.Home onClick={gohome}>
           <img
             id="home"
             src={`${process.env.PUBLIC_URL}/images/Home-none.svg`}

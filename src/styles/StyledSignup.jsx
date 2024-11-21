@@ -36,7 +36,7 @@ export const Home = styled.div`
   flex-shrink: 0;
 
   #homename {
-    color: #b7b7b7;
+    color: #ff3434;
     font-family: NanumGothic;
     font-size: 15px;
     font-style: normal;
@@ -54,7 +54,7 @@ export const Search = styled.div`
   }
 
   #searchname {
-    color: #ff3434;
+    color: #b7b7b7;
     font-family: NanumGothic;
     font-size: 15px;
     font-style: normal;
@@ -187,6 +187,12 @@ export const Infbox = styled.div`
   margin-top: 30px;
   padding: 60px;
   gap: 25px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
 `;
 
 export const Basic = styled.div`
@@ -220,7 +226,7 @@ export const Id = styled.div`
 `;
 
 export const Putid = styled.div`
-  width: 402px;
+  width: 600px;
   height: 67px;
   flex-shrink: 0;
   fill: #fafafa;
@@ -255,7 +261,6 @@ export const Putid = styled.div`
 `;
 
 export const Idcheck = styled.div`
-  width: 175px;
   height: 67px;
   flex-shrink: 0;
   background: #ff3434;
@@ -297,18 +302,17 @@ export const Pw = styled.div`
     color: #272727; /* 입력 텍스트 색상 */
     background-color: #fafafa; /* 배경 색상 */
     outline: none; /* 포커스 시 테두리 제거 */
-  }
 
-  &::placeholder {
-    left: 30px;
-    color: #d2d2d2; /* placeholder 색상 */
-    font-family: NanumGothic;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.7px;
-  }
+    &::placeholder {
+      left: 30px;
+      color: #d2d2d2; /* placeholder 색상 */
+      font-family: NanumGothic;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: -0.7px;
+    }
 `;
 
 export const Pwagain = styled.div`
@@ -364,7 +368,7 @@ export const Nickname = styled.div`
 `;
 
 export const Putnick = styled.div`
-  width: 402px;
+  width: 600px;
   height: 67px;
   flex-shrink: 0;
   fill: #fafafa;
@@ -385,18 +389,17 @@ export const Putnick = styled.div`
     color: #272727; /* 입력 텍스트 색상 */
     background-color: #fafafa; /* 배경 색상 */
     outline: none; /* 포커스 시 테두리 제거 */
-  }
 
-  &::placeholder {
-    left: 30px;
-    color: #d2d2d2; /* placeholder 색상 */
-    font-family: NanumGothic;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.7px;
-  }
+    &::placeholder {
+      left: 30px;
+      color: #d2d2d2; /* placeholder 색상 */
+      font-family: NanumGothic;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: -0.7px;
+    }
 `;
 
 export const Nickcheck = styled.div`
@@ -457,15 +460,116 @@ export const Agetitle = styled.div`
   }
 `;
 
-export const Agebox = styled.div`
+export const DropdownContainer = styled.div`
+  position: relative;
+  background: #fafafa;
+  border-width: 1px;
+  border: #e6e6e6;
   width: 277px;
   height: 67px;
-  flex-shrink: 0;
-  border: 1px solid #e6e6e6; /* 테두리 색상 */
-  background: #fafafa;
-  stroke-width: 1px;
-  stroke: #e6e6e6;
   border-radius: 10px;
+  flex-shrink: 0;
+`;
+
+export const DropdownHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px; /* 내부 여백 조정 */
+  width: 100%; /* 부모 컨테이너 너비에 맞춤 */
+  height: 100%; /* 부모 컨테이너 높이에 맞춤 */
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #d2d2d2;
+  font-family: NanumGothic;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.7px;
+
+  &:hover {
+    border-color: #ff3434;
+  }
+`;
+
+export const DropdownList = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  z-index: 100;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* 스크롤 제거 및 모든 항목 표시 */
+  max-height: none; /* 제한 제거 */
+`;
+
+export const DropdownItem = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  color: #272727;
+  font-family: NanumGothic;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.7px;
+  &:hover {
+    background: #f9f9f9;
+  }
+
+  input[type="radio"] {
+    margin-right: 10px;
+    appearance: none; /* 기본 라디오 버튼 제거 */
+    border: 2px solid #ccc;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    outline: none;
+    display: inline-block;
+    position: relative;
+    background-color: #fff;
+    cursor: pointer;
+
+    /* 선택되지 않았을 때 */
+    &:hover {
+      border-color: #ff3434;
+    }
+
+    /* 선택된 상태 */
+    &:checked {
+      border: 2px solid #ff3434; /* 테두리를 빨간색으로 */
+      background-color: #ff3434; /* 안쪽 빨간색 채우기 */
+    }
+
+    /* 선택된 상태의 내부 표시 */
+    &:checked::before {
+      content: "";
+      display: block;
+      width: 8px;
+      height: 8px;
+      background: #fff; /* 안쪽 흰색 점 */
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &.selected {
+    background: #ffeded;
+    color: #ff3434;
+  }
 `;
 
 export const Live = styled.div`
@@ -618,112 +722,7 @@ export const Go = styled.div`
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.805px;
-  }
-`;
-export const DropdownContainer = styled.div`
-  position: relative;
-  background: #fafafa;
-  border-width: 1px;
-  border: #e6e6e6;
-  width: 277px;
-  height: 67px;
-  border-radius: 10px;
-  flex-shrink: 0;
-`;
-
-export const DropdownHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 15px; /* 내부 여백 조정 */
-  width: 100%; /* 부모 컨테이너 너비에 맞춤 */
-  height: 100%; /* 부모 컨테이너 높이에 맞춤 */
-  background: #fafafa;
-  border: 1px solid #e6e6e6;
-  border-radius: 5px;
-  cursor: pointer;
-  color: #d2d2d2;
-  font-family: NanumGothic;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: -0.7px;
-
-  &:hover {
-    border-color: #ff3434;
-  }
-`;
-
-export const DropdownList = styled.div`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-top: 5px;
-  z-index: 100;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-
-  /* 스크롤 제거 및 모든 항목 표시 */
-  max-height: none; /* 제한 제거 */
-`;
-
-export const DropdownItem = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #333;
-
-  &:hover {
-    background: #f9f9f9;
-  }
-
-  input[type="radio"] {
-    margin-right: 10px;
-    appearance: none; /* 기본 라디오 버튼 제거 */
-    border: 2px solid #ccc;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    outline: none;
-    display: inline-block;
-    position: relative;
-    background-color: #fff;
-    cursor: pointer;
-
-    /* 선택되지 않았을 때 */
-    &:hover {
-      border-color: #ff3434;
-    }
-
-    /* 선택된 상태 */
-    &:checked {
-      border: 2px solid #ff3434; /* 테두리를 빨간색으로 */
-      background-color: #ff3434; /* 안쪽 빨간색 채우기 */
-    }
-
-    /* 선택된 상태의 내부 표시 */
-    &:checked::before {
-      content: "";
-      display: block;
-      width: 8px;
-      height: 8px;
-      background: #fff; /* 안쪽 흰색 점 */
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  &.selected {
-    background: #ffeded;
-    color: #ff3434;
+    border: transparent;
+    background: transparent;
   }
 `;
