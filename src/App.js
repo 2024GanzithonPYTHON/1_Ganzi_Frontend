@@ -3,7 +3,6 @@ import React from "react";
 import Login from "./pages/Login";
 import GlobalStyle from "./pages/GlobalStyles";
 import Signup from "./pages/Signup";
-import Main from "./pages/Main";
 
 function App() {
   return (
@@ -12,7 +11,6 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/Main" element={<Main />} />
       </Routes>
     </BrowserRouter>
   );
