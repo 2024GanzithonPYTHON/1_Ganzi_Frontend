@@ -45,7 +45,6 @@ const Search = () => {
       inputRef.current.value = ""; // input 값 비우기
     }
   };
-
   return (
     <S.Box>
       <S.Nav>
@@ -82,7 +81,7 @@ const Search = () => {
           />
           <div id="recomname">추천장소</div>
         </S.Recom>
-        <S.Fav onClick={gofav}>
+        <S.Fav>
           <img
             id="fav"
             src={`${process.env.PUBLIC_URL}/images/Fav-none.svg`}
@@ -90,7 +89,7 @@ const Search = () => {
           />
           <div id="favname">즐겨찾기</div>
         </S.Fav>
-        <S.My onClick={gomy}>
+        <S.My>
           <img
             id="my"
             src={`${process.env.PUBLIC_URL}/images/My-none.svg`}
@@ -118,50 +117,15 @@ const Search = () => {
         </S.Title>
         <S.Det>
           <S.Searchbar>
-            <input
-              ref={inputRef}
-              id="search"
-              type="text"
-              placeholder="검색어를 입력하세요"
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-            />
+            <input id="search" type="text" placeholder="검색어를 입력하세요" />
             <img
               id="cancel"
               src={`${process.env.PUBLIC_URL}/images/Cancel.svg`}
               alt="지우기"
-              onClick={handleClearInput}
-            />
-            <img
-              id="go"
-              src={`${process.env.PUBLIC_URL}/images/Search-none.svg`}
-              alt="검색"
-              onClick={handleAddSearch}
             />
           </S.Searchbar>
         </S.Det>
-        <S.Searchname>
-          <div id="recent">최근 검색어</div>
-        </S.Searchname>
-        <S.Hr />
-        <S.Recentlist>
-          {recentSearches.map((search, index) => (
-            <S.Recent key={index}>
-              <img
-                id="icon"
-                src={`${process.env.PUBLIC_URL}/images/Place.svg`}
-                alt="장소아이콘"
-              />
-              <div id="information">{search}</div> {/* 검색어 표시 */}
-              <img
-                id="delete"
-                src={`${process.env.PUBLIC_URL}/images/Delete.svg`}
-                alt="삭제"
-                onClick={() => handleDelete(index)} // 삭제 버튼 클릭 이벤트
-              />
-            </S.Recent>
-          ))}
-        </S.Recentlist>
+        {/* <S.Category></S.Category> */}
       </S.Container>
     </S.Box>
   );
