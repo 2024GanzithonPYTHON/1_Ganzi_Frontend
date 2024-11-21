@@ -13,12 +13,20 @@ const Main = () => {
 
   const gosearch = () => {
     console.log("검색 페이지로 이동합니다.");
-    window.location.href = "/Search";
+    window.location.href = "/search";
   };
 
   const gofav = () => {
     console.log("즐겨찾기 페이지로 이동합니다.");
-    window.location.href = "/Favorite";
+    window.location.href = "/favorite";
+  };
+
+  const gomy = () => {
+    window.location.href = "/my";
+  };
+
+  const gorec = () => {
+    window.location.href = "/recommend";
   };
 
   useEffect(() => {
@@ -80,7 +88,9 @@ const Main = () => {
       bounds.extend(position);
 
       window.kakao.maps.event.addListener(marker, "click", () => {
-        setModalContent(`장소: ${place.place_name}\n주소: ${place.address_name}`);
+        setModalContent(
+          `장소: ${place.place_name}\n주소: ${place.address_name}`
+        );
         setModalVisible(true);
       });
     });
@@ -93,7 +103,7 @@ const Main = () => {
   return (
     <M.Box>
       <M.Nav>
-      <M.Profile></M.Profile>
+        <M.Profile></M.Profile>
         <M.Home>
           <img
             id="home"
@@ -118,7 +128,7 @@ const Main = () => {
           />
           <div id="reviewname">리뷰 작성</div>
         </M.Review>
-        <M.Recom>
+        <M.Recom onClick={gorec}>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}
@@ -134,7 +144,7 @@ const Main = () => {
           />
           <div id="favname">즐겨찾기</div>
         </M.Fav>
-        <M.My>
+        <M.My onClick={gomy}>
           <img
             id="my"
             src={`${process.env.PUBLIC_URL}/images/My-none.svg`}
@@ -149,7 +159,7 @@ const Main = () => {
             alt="설정"
           />
         </M.Set>
-        </M.Nav>
+      </M.Nav>
 
       <M.ContentArea>
         <M.SearchBar>

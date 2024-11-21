@@ -16,6 +16,10 @@ const My = () => {
     navigate(-1);
   };
 
+  const gohome = () => {
+    navigate("/");
+  };
+
   const gosearch = () => {
     navigate("/search");
   };
@@ -87,7 +91,7 @@ const My = () => {
     <M.Box>
       <M.Nav>
         <M.Profile></M.Profile>
-        <M.Home>
+        <M.Home onClick={gohome}>
           <img
             id="home"
             src={`${process.env.PUBLIC_URL}/images/Home-none.svg`}

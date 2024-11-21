@@ -19,6 +19,10 @@ const Recommend = () => {
     navigate("/my");
   };
 
+  const gosearch = () => {
+    navigate("/search");
+  };
+
   const [recentSearches, setRecentSearches] = useState([]); // 검색어 목록 상태
   const [searchInput, setSearchInput] = useState(""); // 현재 검색어 입력 상태
 
@@ -78,7 +82,7 @@ const Recommend = () => {
           />
           <div id="homename">메인홈</div>
         </R.Home>
-        <R.Search>
+        <R.Search onClick={gosearch}>
           <img
             id="search"
             src={`${process.env.PUBLIC_URL}/images/Search-none.svg`}

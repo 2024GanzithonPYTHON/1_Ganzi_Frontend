@@ -81,7 +81,7 @@ const Search = () => {
           />
           <div id="recomname">추천장소</div>
         </S.Recom>
-        <S.Fav>
+        <S.Fav onClick={gofav}>
           <img
             id="fav"
             src={`${process.env.PUBLIC_URL}/images/Fav-none.svg`}
@@ -89,7 +89,7 @@ const Search = () => {
           />
           <div id="favname">즐겨찾기</div>
         </S.Fav>
-        <S.My>
+        <S.My onClick={gomy}>
           <img
             id="my"
             src={`${process.env.PUBLIC_URL}/images/My-none.svg`}
