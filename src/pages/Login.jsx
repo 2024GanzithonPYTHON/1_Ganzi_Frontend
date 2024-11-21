@@ -27,12 +27,15 @@ const Login = () => {
     navigate("/my");
   };
 
+  const gorec = () => {
+    navigate("/recommend");
+  };
   // 상태값으로 아이디와 비밀번호 관리
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // 폼 제출 기본 동작 방지
+    e.preventDefault();
 
     try {
       const response = await axios.post(
@@ -42,13 +45,14 @@ const Login = () => {
           password: password,
         },
         {
-          withCredentials: true, // 쿠키 포함
+          Credentials: "include", // 쿠키 포함
         }
       );
 
-      if (response.status === 200 || 201) {
-        alert("로그인 성공!");
-        navigate("/home");
+      if (response.status === 200 || response.status === 201) {
+        console.log("로그인 성공", response.data);
+
+        navigate("/my");
       }
     } catch (error) {
       console.error("로그인 실패", error);
@@ -84,7 +88,7 @@ const Login = () => {
           />
           <div id="reviewname">리뷰 작성</div>
         </L.Review>
-        <L.Recom>
+        <L.Recom onClick={gorec}>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}

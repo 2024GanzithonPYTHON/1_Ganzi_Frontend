@@ -19,6 +19,10 @@ const Signup = () => {
     navigate("/favorite");
   };
 
+  const gorec = () => {
+    navigate("/recommend");
+  };
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -191,7 +195,7 @@ const Signup = () => {
           />
           <div id="reviewname">리뷰 작성</div>
         </S.Review>
-        <S.Recom>
+        <S.Recom onClick={gorec}>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}

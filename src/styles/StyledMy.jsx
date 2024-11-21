@@ -187,7 +187,8 @@ export const Infbox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 31px;
-  justify-content: center;
+  margin-top: 24px;
+  // justify-content: center;
   align-items: center;
 `;
 

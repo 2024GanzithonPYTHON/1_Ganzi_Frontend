@@ -10,6 +10,41 @@ const Search = () => {
     navigate(-1);
   };
 
+  const gofav = () => {
+    navigate("/favorite");
+  };
+
+  const gomy = () => {
+    navigate("/my");
+  };
+
+  const gorec = () => {
+    navigate("/recommend");
+  };
+
+  const [recentSearches, setRecentSearches] = useState([]); // 검색어 목록 상태
+  const [searchInput, setSearchInput] = useState(""); // 현재 검색어 입력 상태
+
+  const handleAddSearch = () => {
+    if (searchInput.trim()) {
+      setRecentSearches((prev) => [searchInput, ...prev]); // 검색어 추가
+      setSearchInput(""); // 입력 필드 초기화
+    }
+  };
+
+  const handleDelete = (indexToDelete) => {
+    setRecentSearches((prev) =>
+      prev.filter((_, index) => index !== indexToDelete)
+    ); // 선택된 검색어 삭제
+  };
+
+  const inputRef = useRef(null);
+
+  const handleClearInput = () => {
+    if (inputRef.current) {
+      inputRef.current.value = ""; // input 값 비우기
+    }
+  };
   return (
     <S.Box>
       <S.Nav>
@@ -38,7 +73,7 @@ const Search = () => {
           />
           <div id="reviewname">리뷰 작성</div>
         </S.Review>
-        <S.Recom>
+        <S.Recom onClick={gorec}>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}
