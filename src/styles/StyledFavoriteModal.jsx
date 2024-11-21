@@ -14,16 +14,15 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 50%;
+  bottom: 0; /* 화면 바닥에 붙도록 설정 */
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%); /* 가로 정중앙 정렬 */
   background: white;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0; /* 위쪽 모서리만 둥글게 */
   width: 672px;
   height: 554px;
   flex-shrink: 0;
-  z-index: 1001;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   justify-content: center;
 `;
@@ -51,6 +50,8 @@ export const Input = styled.div`
   gap: 25px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const FolName = styled.div`
@@ -62,6 +63,8 @@ export const FolName = styled.div`
   border: 1px solid #e6e6e6;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
   #title {
     width: 80%;
@@ -87,6 +90,17 @@ export const FolName = styled.div`
       letter-spacing: -0.7px;
     }
   }
+
+  #number {
+    color: #d2d2d2;
+    text-align: right;
+    font-family: NanumGothic;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.7px;
+  }
 `;
 
 export const Folcolor = styled.div`
@@ -110,12 +124,30 @@ export const Folcolor = styled.div`
     line-height: normal;
     letter-spacing: -0.7px;
   }
+
+  #eclipse {
+    margin-right: 30px;
+    margin-left: auto;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    background: #d9d9d9;
+    border-radius: 50%;
+  }
 `;
 
 export const Color = styled.div`
   display: flex;
+  margin-top: 24px;
   flex-direction: row;
+  justify-content: center;
+  align-imems: center;
   gap: 38px;
+  img {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+  }
 `;
 
 export const Create = styled.div`

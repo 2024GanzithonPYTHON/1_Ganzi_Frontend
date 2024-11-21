@@ -18,6 +18,10 @@ const Search = () => {
     navigate("/my");
   };
 
+  const gorec = () => {
+    navigate("/recommend");
+  };
+
   const [recentSearches, setRecentSearches] = useState([]); // 검색어 목록 상태
   const [searchInput, setSearchInput] = useState(""); // 현재 검색어 입력 상태
 
@@ -70,7 +74,7 @@ const Search = () => {
           />
           <div id="reviewname">리뷰 작성</div>
         </S.Review>
-        <S.Recom>
+        <S.Recom onClick={gorec}>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}

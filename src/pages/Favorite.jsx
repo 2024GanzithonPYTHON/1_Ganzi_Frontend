@@ -20,6 +20,10 @@ const Favorite = () => {
     navigate("/my");
   };
 
+  const gorec = () => {
+    navigate("/recommend");
+  };
+
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
 
@@ -52,7 +56,7 @@ const Favorite = () => {
           />
           <div id="reviewname">리뷰 작성</div>
         </F.Review>
-        <F.Recom>
+        <F.Recom onClick={gorec}>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}
@@ -99,7 +103,7 @@ const Favorite = () => {
         </F.Side>
         <F.List>
           <F.Folder>
-            <img id="image" src="" alt="" />
+            <div id="img"></div>
             <div id="folder">폴더명</div>
           </F.Folder>
           <F.Hr></F.Hr>
