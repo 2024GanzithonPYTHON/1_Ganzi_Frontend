@@ -25,7 +25,7 @@ export const Nav = styled.div`
 export const MapContainer = styled.div`
   width: 80%; /*지도 너비*/
   height: 100%;
-  position: relative; 
+  position: relative;
 `;
 
 export const Profile = styled.div`
@@ -36,7 +36,7 @@ export const Profile = styled.div`
   border-radius: 50%; /* 둥근 모서리를 50%로 설정해 원 모양 생성 */
   background: url(<path-to-image>) lightgray 50% / cover no-repeat;
 
-  #Profile{
+  #Profile {
     margin-top: 1000px;
   }
 `;
@@ -46,7 +46,7 @@ export const Home = styled.div`
   flex-shrink: 0;
 
   #homename {
-    color: #b7b7b7;
+    color: #ff3434;
     font-family: NanumGothic;
     font-size: 15px;
     font-style: normal;
@@ -118,7 +118,7 @@ export const Fav = styled.div`
   }
 
   #favname {
-    color: #ff3434;
+    color: #b7b7b7;
     font-family: NanumGothic;
     font-size: 15px;
     font-style: normal;
@@ -149,7 +149,7 @@ export const My = styled.div`
 export const Set = styled.div`
   padding-top: 967px;
   padding-bottom: 184px;
-`
+`;
 
 // 콘텐츠 영역
 export const ContentArea = styled.div`
@@ -159,7 +159,7 @@ export const ContentArea = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  justify-content: center;  /* 수평 중앙 정렬 */
+  justify-content: center; /* 수평 중앙 정렬 */
   align-items: center;
 `;
 
@@ -168,18 +168,18 @@ export const SearchBar = styled.div`
   width: 650px;
   height: 60px;
   border-radius: 30px; /* 둥근 모서리 */
-  background: #FFF;
+  background: #fff;
   display: flex;
   align-items: center;
-  background: #FFF;
-  box-shadow: 0px 4px 4px 2px rgba(143, 143, 143, 0.20);
+  background: #fff;
+  box-shadow: 0px 4px 4px 2px rgba(143, 143, 143, 0.2);
   position: fixed;
   top: 20px;
-  transform: translateX()(-50%);
+  transform: translateX() (-50%);
   z-index: 1000;
 
   input {
-    color: #CACACA;
+    color: #cacaca;
     font-family: NanumGothic;
     font-size: 23px;
     font-style: normal;
@@ -200,22 +200,21 @@ export const SearchBar = styled.div`
     padding-left: 15px;
     color: #333;
   }
-  
-    input::placeholder {
-    color: #AAA; /* 회색 placeholder 색상 */
+
+  input::placeholder {
+    color: #aaa; /* 회색 placeholder 색상 */
   }
 
-  button{
+  button {
     border: none; /* 테두리 제거 */
     border-radius: 30px; /* 둥근 모서리 */
-    background: #FFF;
+    background: #fff;
     font-size: 10px; /* 글자 크기 */
     cursor: pointer; /* 마우스 커서 포인터 */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
     transition: all 0.3s ease; /* 호버 시 부드러운 전환 효과 */
   }
 `;
-
 
 // 지도 영역
 export const MapArea = styled.div`
@@ -234,9 +233,8 @@ export const InfoSection = styled.div`
   font-size: 14px;
   background-color: #fff;
   border-top: 1px solid #dee2e6;
-  fill: #FFF;
-filter: drop-shadow(0px 4px 17px rgba(37, 37, 37, 0.20));
-
+  fill: #fff;
+  filter: drop-shadow(0px 4px 17px rgba(37, 37, 37, 0.2));
 
   h3 {
     margin: 0;
