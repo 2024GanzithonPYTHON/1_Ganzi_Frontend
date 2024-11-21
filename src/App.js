@@ -7,6 +7,7 @@ import Search from "./pages/Search";
 import Favorite from "./pages/Favorite";
 import My from "./pages/My";
 import Recommend from "./pages/Recommend";
+import Main from "./pages/Main";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/my" element={<My />} />
         <Route path="/recommend" element={<Recommend />} />
+        <Route path="/" element={<Main />} />
       </Routes>
     </BrowserRouter>
   );
