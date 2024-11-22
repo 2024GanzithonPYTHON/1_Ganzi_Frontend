@@ -19,6 +19,10 @@ const Signup = () => {
     navigate("/favorite");
   };
 
+  const gohome = () => {
+    navigate("/");
+  };
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -111,7 +115,7 @@ const Signup = () => {
     if (file) {
       const previewUrl = URL.createObjectURL(file);
       setPreview(previewUrl);
-      setProfilePicture(previewUrl); // 실제 업로드 로직은 필요 시 추가
+      setProfilePicture(file); // 실제 파일 객체 저장
     }
   };
 
@@ -119,25 +123,48 @@ const Signup = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // if (!isFormComplete) {
-    //   alert("모든 필드를 채워주세요.");
-    //   return;
-    // }
+    if (!isFormComplete) {
+      alert("모든 필드를 채워주세요.");
+      return;
+    }
 
     try {
+      // FormData 생성
+      const formData = new FormData();
+
+      // 사진 추가 (파일)
+      formData.append("profilePicture", profilePicture);
+
+      // JSON 데이터 추가
+      const jsonData = {
+        username: username,
+        password: password,
+        passwordConfirm: passwordConfirm,
+        nickname: nickname,
+        ageGroup: ageGroup,
+        region: region,
+      };
+
+      // JSON 데이터를 문자열로 직렬화하고, application/json 타입을 명시
+      formData.append(
+        "user",
+        new Blob([JSON.stringify(jsonData)], { type: "application/json" })
+      );
+
+      // FormData 콘솔 출력
+      // console.log("회원가입 요청 데이터:");
+      // for (let pair of formData.entries()) {
+      //   console.log(pair[0], pair[1]);
+      // }
+
+      // Axios 요청
       const response = await axios.post(
         "https://go-farming.shop/users/register",
+        formData,
         {
-          username: username,
-          password: password,
-          passwordConfirm: passwordConfirm,
-          nickname: nickname,
-          profilePicture: profilePicture,
-          ageGroup: ageGroup,
-          region: "서울시",
-        },
-        {
-          withCredentials: true, // 쿠키 및 인증 정보 포함
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
 
@@ -146,8 +173,8 @@ const Signup = () => {
         navigate("/login");
       }
     } catch (error) {
-      console.error("회원가입 중 오류 발생:", error.response || error.message);
-      alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+      console.error("회원가입 실패:", error.response?.data || error.message);
+      alert(error.response?.data?.message || "회원가입에 실패했습니다.");
     }
   };
 
@@ -167,7 +194,7 @@ const Signup = () => {
     <S.Box>
       <S.Nav>
         <S.Profile></S.Profile>
-        <S.Home>
+        <S.Home onClick={gohome}>
           <img
             id="home"
             src={`${process.env.PUBLIC_URL}/images/Home.svg`}
@@ -199,7 +226,7 @@ const Signup = () => {
           />
           <div id="recomname">추천장소</div>
         </S.Recom>
-        <S.Fav onClick={gofav}>
+        <S.Fav>
           <img
             id="fav"
             src={`${process.env.PUBLIC_URL}/images/Fav-none.svg`}

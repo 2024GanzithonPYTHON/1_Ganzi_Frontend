@@ -198,6 +198,13 @@ export const Img = styled.div`
   flex-shrink: 0;
   background: #d9d9d9;
   border-radius: 50%; /* 둥근 모서리를 50%로 설정해 원 모양 생성 */
+
+  img {
+    width: 143px;
+    height: 143px;
+    flex-shrink: 0;
+    border-radius: 50%; /* 둥근 모서리를 50%로 설정해 원 모양 생성 */
+  }
 `;
 
 export const Name = styled.div`

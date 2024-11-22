@@ -36,34 +36,52 @@ const My = () => {
     // 서버와의 통신으로 데이터 가져오기
     const fetchProfileData = async () => {
       try {
+        // 로컬 스토리지에서 토큰 가져오기
+        const token = localStorage.getItem("authToken");
         // 프로필 사진 호출
         const profileResponse = await axios.get(
           "https://go-farming.shop/users/profile/profile-picture",
-          { withCredentials: true } // 쿠키 자동 포함
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // 토큰 추가
+            },
+          }
         );
-        setProfilePic(profileResponse.data.message);
+        setProfilePic(profileResponse.data);
         console.log("사진", profileResponse.data);
 
         // 닉네임 호출
         const nicknameResponse = await axios.get(
           "https://go-farming.shop/users/profile/nickname",
-          { Credentials: "include" }
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // 토큰 추가
+            },
+          }
         );
-        setNickname(nicknameResponse.data.message);
+        setNickname(nicknameResponse.data);
 
         // 연령대 호출
         const ageGroupResponse = await axios.get(
           "https://go-farming.shop/users/profile/age-group",
-          { withCredentials: true }
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // 토큰 추가
+            },
+          }
         );
-        setAgeGroup(ageGroupResponse.data.message);
+        setAgeGroup(ageGroupResponse.data);
 
         // 거주지 호출
         const regionResponse = await axios.get(
           "https://go-farming.shop/users/profile/region",
-          { withCredentials: true }
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // 토큰 추가
+            },
+          }
         );
-        setRegion(regionResponse.data.message);
+        setRegion(regionResponse.data);
       } catch (error) {
         console.error("데이터 로드 실패:", error);
       }
@@ -74,12 +92,22 @@ const My = () => {
 
   const handleLogout = async () => {
     try {
+      // 로컬 스토리지에서 토큰 가져오기
+      const token = localStorage.getItem("authToken");
       const response = await axios.post(
         "https://go-farming.shop/users/logout",
-        { withCredentials: true } // 쿠키 포함
+        {}, // 로그아웃 요청에 필요한 바디 (없다면 빈 객체)
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // 토큰 추가
+          },
+        }
       );
       console.log(response.data.message);
       alert("로그아웃 성공!");
+
+      // 로컬 스토리지에서 토큰 제거
+      localStorage.removeItem("authToken");
       window.location.href = "/login"; // 로그인 페이지로 이동
     } catch (error) {
       console.error("로그아웃 실패:", error);
