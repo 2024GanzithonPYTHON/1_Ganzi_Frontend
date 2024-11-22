@@ -3,6 +3,12 @@ import React from "react";
 import Login from "./pages/Login";
 import GlobalStyle from "./pages/GlobalStyles";
 import Signup from "./pages/Signup";
+import Search from "./pages/Search";
+import Favorite from "./pages/Favorite";
+import My from "./pages/My";
+import Recommend from "./pages/Recommend";
+import Main from "./pages/Main";
+import FavEdit from "./pages/FavEdit";
 
 function App() {
   return (
@@ -11,6 +17,12 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/favorite" element={<Favorite />} />
+        <Route path="/my" element={<My />} />
+        <Route path="/recommend" element={<Recommend />} />
+        <Route path="/" element={<Main />} />
+        <Route path="/favorite/edit" element={<FavEdit />} />
       </Routes>
     </BrowserRouter>
   );

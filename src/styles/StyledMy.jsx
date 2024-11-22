@@ -165,11 +165,13 @@ export const Title = styled.div`
   //   justify-content: center;
   //   text-align: center;
   align-items: center;
+
   #back {
     width: 59px;
     height: 59px;
     flex-shrink: 0;
   }
+
   #name {
     color: #272727;
     font-family: NanumGothic;
@@ -178,6 +180,14 @@ export const Title = styled.div`
     font-weight: 700;
     line-height: normal;
     letter-spacing: -1.225px;
+  }
+
+  #setting {
+    margin-left: auto;
+    width: 35.796px;
+    height: 36.8px;
+    flex-shrink: 0;
+    margin-right: 73.2px;
   }
 `;
 

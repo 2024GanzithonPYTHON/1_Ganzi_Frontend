@@ -32,6 +32,17 @@ const My = () => {
     navigate("/recommend");
   };
 
+  const goToSettings = () => {
+    // iOS: 설정 앱으로 이동
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      window.location.href = "app-settings:";
+    } else {
+      // Android: 대체 URL 또는 도움말 페이지로 이동
+      window.location.href =
+        "https://support.google.com/android/answer/6083927";
+    }
+  };
+
   useEffect(() => {
     // 서버와의 통신으로 데이터 가져오기
     const fetchProfileData = async () => {
@@ -172,6 +183,7 @@ const My = () => {
             id="setting"
             src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
             alt="설정"
+            onClick={goToSettings}
           />
         </M.Set>
       </M.Nav>
@@ -184,6 +196,12 @@ const My = () => {
             onClick={goback}
           />
           <div id="name">마이페이지</div>
+          <img
+            id="setting"
+            src={`${process.env.PUBLIC_URL}images/Setting-none.svg`}
+            alt="설정"
+            onClick={goToSettings}
+          />
         </M.Title>
         <M.Infbox>
           <M.Img>

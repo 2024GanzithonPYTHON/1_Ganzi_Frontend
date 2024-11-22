@@ -239,13 +239,28 @@ export const Folder = styled.div`
     line-height: normal;
     letter-spacing: -0.875px;
   }
+
+  #edit {
+    margin-left: auto;
+    width: 42px;
+    height: 43px;
+    flex-shrink: 0;
+  }
+
+  #delete {
+    margin-right: 47px;
+    margin-left: 11px;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
 `;
 
 export const Hr = styled.div`
-  margin-top: auto;
   width: 600.003px;
   height: 2px;
   background: #f3f3f3;
+  margin-top: auto;
 `;
 
 export const New = styled.div`
@@ -280,11 +295,11 @@ export const New = styled.div`
 `;
 
 export const Edit = styled.div`
-  margin-bottom: 35px;
   width: 600px;
   height: 67px;
   flex-shrink: 0;
   background: #b9b9b9;
+  margin-bottom: 35px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
