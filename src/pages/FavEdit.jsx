@@ -1,11 +1,11 @@
 import React, { useRef, useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as F from "../styles/StyledFav";
+import * as F from "../styles/StyledFE";
 import Modal from "./FavoriteModal";
 import axios from "axios";
 
-const Favorite = () => {
+const FavEdit = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState({
@@ -13,7 +13,34 @@ const Favorite = () => {
     selectedColor: "",
     selectedColorId: "색상을 선택해주세요",
   });
+  const [selectedFolderId, setSelectedFolderId] = useState(null); // 선택된 폴더 ID 상태
   const [folders, setFolders] = useState([]); // API 데이터 상태 추가
+  // 폴더 선택 핸들러
+  const handleFolderClick = (folderId) => {
+    setSelectedFolderId((prevId) => (prevId === folderId ? null : folderId)); // 이미 선택된 폴더를 클릭하면 선택 해제
+  };
+  const handleDeleteClick = async (folderId) => {
+    const token = localStorage.getItem("authToken");
+
+    try {
+      const response = await axios.delete(`/folders/${folderId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Authorization 헤더에 토큰 추가
+        },
+      });
+
+      if (response.status === 200) {
+        alert("폴더가 성공적으로 삭제되었습니다.");
+        // 삭제된 폴더를 상태에서 제거
+        setFolders((prevFolders) =>
+          prevFolders.filter((folder) => folder.folderId !== folderId)
+        );
+      }
+    } catch (error) {
+      console.error("폴더 삭제 중 오류 발생:", error.response || error.message);
+      alert("폴더 삭제에 실패했습니다. 다시 시도해주세요.");
+    }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -52,8 +79,8 @@ const Favorite = () => {
     navigate("/recommend");
   };
 
-  const goedit = () => {
-    navigate("/favorite/edit");
+  const gofav = () => {
+    navigate("/favorite");
   };
 
   const openModal = () => setShowModal(true);
@@ -150,7 +177,16 @@ const Favorite = () => {
         </F.Side>
         <F.List>
           {folders.map((folder) => (
-            <F.Folder key={folder.folderId}>
+            <F.Folder
+              key={folder.folderId}
+              onClick={() => handleFolderClick(folder.folderId)}
+              style={{
+                border:
+                  selectedFolderId === folder.folderId
+                    ? "1px solid #FF0000" // 선택된 폴더에만 border 적용
+                    : "1px solid #E6E6E6", // 선택되지 않은 폴더는 기본값
+              }}
+            >
               <div
                 id="img"
                 style={{
@@ -158,19 +194,37 @@ const Favorite = () => {
                 }}
               ></div>
               <div id="folder">{folder.folderName}</div> {/* 폴더 이름 표시 */}
+              {selectedFolderId === folder.folderId && ( // 선택된 폴더에만 이미지 렌더링
+                <>
+                  <img
+                    id="edit"
+                    src={`${process.env.PUBLIC_URL}/images/Edit.svg`}
+                    alt="수정"
+                  />
+                  <img
+                    id="delete"
+                    src={`${process.env.PUBLIC_URL}/images/DelFolder.svg`}
+                    alt="삭제"
+                    onClick={(e) => {
+                      e.stopPropagation(); // 부모의 onClick 이벤트 전파 방지
+                      handleDeleteClick(folder.folderId);
+                    }}
+                  />
+                </>
+              )}
             </F.Folder>
           ))}
           <F.Hr></F.Hr>
-          <F.New onClick={openModal}>
+          {/* <F.New onClick={openModal}>
             <img
               id="newfolder"
               src={`${process.env.PUBLIC_URL}/images/NewFolder.svg`}
               alt="새로운"
             />
             <div id="new">새 폴더 만들기</div>
-          </F.New>
-          <F.Edit onClick={goedit}>
-            <div id="detail">폴더 수정/삭제하기</div>
+          </F.New> */}
+          <F.Edit onClick={gofav}>
+            <div id="detail">완료하기</div>
           </F.Edit>
         </F.List>
       </F.Container>
@@ -178,4 +232,4 @@ const Favorite = () => {
   );
 };
 
-export default Favorite;
+export default FavEdit;

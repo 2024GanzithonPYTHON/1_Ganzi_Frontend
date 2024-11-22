@@ -8,6 +8,7 @@ import Favorite from "./pages/Favorite";
 import My from "./pages/My";
 import Recommend from "./pages/Recommend";
 import Main from "./pages/Main";
+import FavEdit from "./pages/FavEdit";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/my" element={<My />} />
         <Route path="/recommend" element={<Recommend />} />
         <Route path="/" element={<Main />} />
+        <Route path="/favorite/edit" element={<FavEdit />} />
       </Routes>
     </BrowserRouter>
   );
