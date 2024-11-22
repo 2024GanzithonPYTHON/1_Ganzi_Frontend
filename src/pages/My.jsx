@@ -12,12 +12,12 @@ const My = () => {
   const [ageGroup, setAgeGroup] = useState(""); // 연령대
   const [region, setRegion] = useState(""); // 거주지
 
-  const gosignup = () => {
-    navigate("/signup");
-  };
-
   const goback = () => {
     navigate(-1);
+  };
+
+  const gohome = () => {
+    navigate("/");
   };
 
   const gosearch = () => {
@@ -28,69 +28,87 @@ const My = () => {
     navigate("/favorite");
   };
 
-  function getCookie(name) {
-    const cookies = document.cookie.split(";"); // 쿠키 문자열을 ";"로 나눔
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim(); // 쿠키의 앞뒤 공백 제거
-      if (cookie.startsWith(`${name}=`)) {
-        return cookie.substring(name.length + 1); // "name=" 이후의 값 반환
-      }
-    }
-    return null; // 쿠키가 없으면 null 반환
-  }
-  console.log(document.cookie);
-
-  const jsessionId = getCookie("JSESSIONID"); // JSESSIONID 가져오기
-  console.log("현재 쿠키에 저장된 JSESSIONID:", jsessionId);
+  const gorec = () => {
+    navigate("/recommend");
+  };
 
   useEffect(() => {
-    // Axios 기본 설정 (쿠키 자동 포함)
-    axios.defaults.withCredentials = true;
+    // 서버와의 통신으로 데이터 가져오기
+    const fetchProfileData = async () => {
+      try {
+        // 로컬 스토리지에서 토큰 가져오기
+        const token = localStorage.getItem("authToken");
+        // 프로필 사진 호출
+        const profileResponse = await axios.get(
+          "https://go-farming.shop/users/profile/profile-picture",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // 토큰 추가
+            },
+          }
+        );
+        setProfilePic(profileResponse.data);
+        console.log("사진", profileResponse.data);
 
-    // 프로필 사진 호출
-    axios
-      .get("https://go-farming.shop/users/profile/profile-picture", {
-        headers: {
-          Cookie: `JSESSIONID=${jsessionId}`,
-        },
-      })
-      .then((response) => {
-        setProfilePic(response.data.message); // message 값에서 이미지 URL 저장
-      })
-      .catch((error) => console.error("프로필 사진 로드 실패:", error));
+        // 닉네임 호출
+        const nicknameResponse = await axios.get(
+          "https://go-farming.shop/users/profile/nickname",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // 토큰 추가
+            },
+          }
+        );
+        setNickname(nicknameResponse.data);
 
-    // 닉네임 호출
-    axios
-      .get("https://go-farming.shop/users/profile/nickname")
-      .then((response) => {
-        setNickname(response.data.message); // message 값에서 닉네임 저장
-      })
-      .catch((error) => console.error("닉네임 로드 실패:", error));
+        // 연령대 호출
+        const ageGroupResponse = await axios.get(
+          "https://go-farming.shop/users/profile/age-group",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // 토큰 추가
+            },
+          }
+        );
+        setAgeGroup(ageGroupResponse.data);
 
-    // 연령대 호출
-    axios
-      .get("https://go-farming.shop/users/profile/age-group")
-      .then((response) => {
-        setAgeGroup(response.data.message); // message 값에서 연령대 저장
-      })
-      .catch((error) => console.error("연령대 로드 실패:", error));
+        // 거주지 호출
+        const regionResponse = await axios.get(
+          "https://go-farming.shop/users/profile/region",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // 토큰 추가
+            },
+          }
+        );
+        setRegion(regionResponse.data);
+      } catch (error) {
+        console.error("데이터 로드 실패:", error);
+      }
+    };
 
-    // 거주지 호출
-    axios
-      .get("https://go-farming.shop/users/profile/region")
-      .then((response) => {
-        setRegion(response.data.message); // message 값에서 거주지 저장
-      })
-      .catch((error) => console.error("거주지 로드 실패:", error));
+    fetchProfileData(); // 프로필 데이터 로드 함수 호출
   }, []);
 
   const handleLogout = async () => {
     try {
-      const response = await axios.post("https://go-farming.shop/users/logout");
-      console.log(response.data.message); // 성공 메시지 출력
+      // 로컬 스토리지에서 토큰 가져오기
+      const token = localStorage.getItem("authToken");
+      const response = await axios.post(
+        "https://go-farming.shop/users/logout",
+        {}, // 로그아웃 요청에 필요한 바디 (없다면 빈 객체)
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // 토큰 추가
+          },
+        }
+      );
+      console.log(response.data.message);
       alert("로그아웃 성공!");
-      // 추가적으로 로그아웃 이후 처리 (예: 페이지 이동)
-      window.location.href = "/login"; // 로그아웃 후 로그인 페이지로 이동
+
+      // 로컬 스토리지에서 토큰 제거
+      localStorage.removeItem("authToken");
+      window.location.href = "/login"; // 로그인 페이지로 이동
     } catch (error) {
       console.error("로그아웃 실패:", error);
       alert("로그아웃에 실패했습니다. 다시 시도해주세요.");
@@ -101,7 +119,7 @@ const My = () => {
     <M.Box>
       <M.Nav>
         <M.Profile></M.Profile>
-        <M.Home>
+        <M.Home onClick={gohome}>
           <img
             id="home"
             src={`${process.env.PUBLIC_URL}/images/Home-none.svg`}
@@ -125,7 +143,7 @@ const My = () => {
           />
           <div id="reviewname">리뷰 작성</div>
         </M.Review>
-        <M.Recom>
+        <M.Recom onClick={gorec}>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}
@@ -175,15 +193,13 @@ const My = () => {
               "이미지 로딩 중..."
             )}
           </M.Img>
-          <M.Name>
-            {nickname ? <h2>{nickname}</h2> : "닉네임 로딩 중..."}
-          </M.Name>
+          <M.Name>{nickname}</M.Name>
           <M.Inf>
             <M.Age>
-              <div>{ageGroup ? `${ageGroup}대` : "로딩 중..."}</div>
+              <div>{ageGroup}대</div>
             </M.Age>
             <M.Live>
-              <div>{region || "로딩 중..."}</div>
+              <div>{region}</div>
             </M.Live>
           </M.Inf>
           <M.Hr />

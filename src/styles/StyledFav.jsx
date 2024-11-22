@@ -220,11 +220,13 @@ export const Folder = styled.div`
   border: 1px solid #e6e6e6; /* 테두리 색상 */
   border-radius: 10px;
 
-  #image {
+  #img {
     width: 80px;
     height: 80px;
     flex-shrink: 0;
+    border-radius: 50%;
     margin-left: 47px;
+    background: #d9d9d9;
   }
 
   #folder {

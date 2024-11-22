@@ -27,28 +27,31 @@ const Login = () => {
     navigate("/my");
   };
 
+  const gorec = () => {
+    navigate("/recommend");
+  };
   // 상태값으로 아이디와 비밀번호 관리
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // 폼 제출 기본 동작 방지
+    e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://go-farming.shop/users/login",
-        {
-          username: username,
-          password: password,
-        },
-        {
-          withCredentials: true, // 쿠키 포함
-        }
-      );
+      const response = await axios.post("https://go-farming.shop/users/login", {
+        username: username,
+        password: password,
+      });
 
-      if (response.status === 200 || 201) {
-        alert("로그인 성공!");
-        navigate("/home");
+      if (response.status === 200 || response.status === 201) {
+        // 'Token:' 뒷부분 추출
+        const tokenString = response.data; // "로그인 성공. Token: eyJhbGciOiJIUzI1NiJ9..."
+        const token = tokenString.split("Token: ")[1]; // 'Token:' 이후의 문자열 추출
+
+        // 토큰 저장하기
+        localStorage.setItem("authToken", token);
+
+        navigate("/my");
       }
     } catch (error) {
       console.error("로그인 실패", error);
@@ -84,7 +87,7 @@ const Login = () => {
           />
           <div id="reviewname">리뷰 작성</div>
         </L.Review>
-        <L.Recom>
+        <L.Recom onClick={gorec}>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}
