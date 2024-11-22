@@ -38,19 +38,18 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://go-farming.shop/users/login",
-        {
-          username: username,
-          password: password,
-        },
-        {
-          Credentials: "include", // 쿠키 포함
-        }
-      );
+      const response = await axios.post("https://go-farming.shop/users/login", {
+        username: username,
+        password: password,
+      });
 
       if (response.status === 200 || response.status === 201) {
-        console.log("로그인 성공", response.data);
+        // 'Token:' 뒷부분 추출
+        const tokenString = response.data; // "로그인 성공. Token: eyJhbGciOiJIUzI1NiJ9..."
+        const token = tokenString.split("Token: ")[1]; // 'Token:' 이후의 문자열 추출
+
+        // 토큰 저장하기
+        localStorage.setItem("authToken", token);
 
         navigate("/my");
       }

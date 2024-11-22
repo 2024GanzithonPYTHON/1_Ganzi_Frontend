@@ -7,6 +7,11 @@ import Modal from "./FavoriteModal";
 const Favorite = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState({
+    inputValue: "",
+    selectedColor: "",
+    selectedColorId: "색상을 선택해주세요",
+  });
 
   const goback = () => {
     navigate(-1);
@@ -25,11 +30,25 @@ const Favorite = () => {
   };
 
   const openModal = () => setShowModal(true);
-  const closeModal = () => setShowModal(false);
+  const closeModal = () => {
+    // 모달 데이터 초기화
+    setModalData({
+      inputValue: "",
+      selectedColor: "",
+      selectedColorId: "색상을 선택해주세요",
+    });
+    setShowModal(false); // 모달 닫기
+  };
 
   return (
     <F.Box>
-      <Modal isOpen={showModal} onClose={closeModal} /> {/* 모달 추가 */}
+      <Modal
+        isOpen={showModal}
+        onClose={closeModal}
+        modalData={modalData} // 초기 데이터 전달
+        setModalData={setModalData}
+      />{" "}
+      {/* 모달 추가 */}
       <F.Nav>
         <F.Profile></F.Profile>
         <F.Home>

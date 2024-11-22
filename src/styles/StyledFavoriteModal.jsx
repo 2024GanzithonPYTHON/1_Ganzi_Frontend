@@ -77,7 +77,7 @@ export const FolName = styled.div`
     letter-spacing: -0.7px;
     border: transparent;
     background: transparent;
-    margin-left: 30px;
+    // margin-left: 30px;
     outline: none; /* 포커스 시 테두리 제거 */
 
     &::placeholder {
@@ -162,6 +162,8 @@ export const Create = styled.div`
   display: flex;
 
   #create {
+    border: transparent;
+    background: transparent;
     color: #fff;
     font-family: NanumGothic;
     font-size: 23px;
