@@ -118,7 +118,7 @@ export const Fav = styled.div`
   }
 
   #favname {
-    color: #ff3434;
+    color: #b7b7b7;
     font-family: NanumGothic;
     font-size: 15px;
     font-style: normal;
@@ -230,41 +230,64 @@ export const MapArea = styled.div`
 export const InfoSection = styled.div`
   width: 672px;
   height: 392px;
-  flex-shrink: 0;
-  font-size: 14px;
-  background-color: #fff;
-  border-top: 1px solid #dee2e6;
+  flex-shrink: 0; 
   fill: #FFF;
-filter: drop-shadow(0px 4px 17px rgba(37, 37, 37, 0.20));
+  filter: drop-shadow(0px 4px 17px rgba(37, 37, 37, 0.20));
 
+  .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* 어두운 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
-  h3 {
-    margin: 0;
-  }
+.modal-content {
+  width: 300px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
 
-  p {
-    margin: 5px 0;
-  }
+.modal-header {
+  padding: 16px;
+  background-color: #f5f5f5; /* 상단 배경 */
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
 
-  div {
-    display: flex;
-    gap: 10px;
+.modal-body {
+  padding: 16px;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+}
 
-    button {
-      flex: 1;
-      padding: 10px;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
+.modal-footer {
+  padding: 10px;
+  text-align: center;
+  background-color: #f5f5f5;
+}
 
-      &:first-child {
-        background-color: #007bff;
-      }
+.modal-footer button {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-      &:last-child {
-        background-color: #28a745;
-      }
-    }
-  }
+.modal-footer button:hover {
+  background-color: #0056b3;
+}
+
 `;
