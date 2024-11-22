@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
+import ReactDOM from "react-dom";
 import * as M from "../styles/StyledMain";
+import Modal from './MainModal';
 
 const Main = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -163,13 +165,19 @@ const Main = () => {
 
       <M.ContentArea>
         <M.SearchBar>
-          <input
-            type="text"
-            placeholder="검색어를 입력하세요"
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-          <button onClick={handleSearch}>검색</button>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearch();
+            }}
+          >
+            <input
+              type="text"
+              placeholder="검색어를 입력하세요"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+          </form>
         </M.SearchBar>
         <M.MapArea>
           <div ref={mapRef} style={{ width: "100%", height: "200vh" }}></div>
@@ -186,12 +194,13 @@ const Main = () => {
         </M.InfoSection>
       </M.ContentArea>
       {modalVisible && (
-        <div className="modal">
-          <div className="modal-content">
+        <Modal isOpen={modalVisible} onClose={closeModal}>
+          <div>
+            <h2>장소 정보</h2>
             <p>{modalContent}</p>
             <button onClick={closeModal}>닫기</button>
           </div>
-        </div>
+        </Modal>
       )}
     </M.Box>
   );

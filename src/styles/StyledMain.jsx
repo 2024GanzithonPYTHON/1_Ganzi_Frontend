@@ -233,8 +233,9 @@ export const InfoSection = styled.div`
   font-size: 14px;
   background-color: #fff;
   border-top: 1px solid #dee2e6;
-  fill: #fff;
-  filter: drop-shadow(0px 4px 17px rgba(37, 37, 37, 0.2));
+  fill: #FFF;
+filter: drop-shadow(0px 4px 17px rgba(37, 37, 37, 0.20));
+
 
   h3 {
     margin: 0;
@@ -247,6 +248,7 @@ export const InfoSection = styled.div`
   div {
     display: flex;
     gap: 10px;
+  }
 
     button {
       flex: 1;
@@ -255,14 +257,14 @@ export const InfoSection = styled.div`
       border: none;
       border-radius: 4px;
       cursor: pointer;
+    }
 
       &:first-child {
         background-color: #007bff;
       }
 
-      &:last-child {
-        background-color: #28a745;
-      }
-    }
-  }
+.modal-footer button:hover {
+  background-color: #0056b3;
+}
+
 `;
