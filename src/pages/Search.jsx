@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "../styles/StyledSearch";
+import axios from "axios";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -16,6 +17,14 @@ const Search = () => {
 
   const gomy = () => {
     navigate("/my");
+  };
+
+  const gohome = () => {
+    navigate("/");
+  };
+
+  const gorec = () => {
+    navigate("/recommend");
   };
 
   const [recentSearches, setRecentSearches] = useState([]); // 검색어 목록 상태
@@ -42,11 +51,47 @@ const Search = () => {
     }
   };
 
+  const [profileImage, setProfileImage] = useState(""); // 프로필 이미지 상태 저장
+  useEffect(() => {
+    // 프로필 이미지 가져오는 함수
+    const fetchProfileImage = async () => {
+      try {
+        const token = localStorage.getItem("authToken"); // 로컬스토리지에서 토큰 가져오기
+
+        const response = await axios.get("/users/profile/profile-picture", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Authorization 헤더에 토큰 추가
+          },
+        });
+
+        setProfileImage(response.data); // API에서 받은 이미지 URL 설정
+      } catch (error) {
+        console.error("Failed to fetch profile image:", error);
+      }
+    };
+
+    fetchProfileImage();
+  }, []);
+
   return (
     <S.Box>
       <S.Nav>
-        <S.Profile></S.Profile>
-        <S.Home>
+        <S.Profile>
+          {profileImage ? (
+            <img
+              src={profileImage}
+              alt="프로필"
+              style={{
+                width: "76.166px",
+                height: "76.166px",
+                borderRadius: "50%",
+              }}
+            />
+          ) : (
+            ""
+          )}
+        </S.Profile>
+        <S.Home onClick={gohome}>
           <img
             id="home"
             src={`${process.env.PUBLIC_URL}/images/Home-none.svg`}
@@ -70,7 +115,7 @@ const Search = () => {
           />
           <div id="reviewname">리뷰 작성</div>
         </S.Review>
-        <S.Recom>
+        <S.Recom onClick={gorec}>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}

@@ -15,12 +15,16 @@ const Signup = () => {
     navigate("/search");
   };
 
-  const gofav = () => {
-    navigate("/favorite");
+  const gomy = () => {
+    navigate("/my");
   };
 
   const gohome = () => {
     navigate("/");
+  };
+
+  const gorec = () => {
+    navigate("/recommend");
   };
 
   const [username, setUsername] = useState("");
@@ -218,7 +222,7 @@ const Signup = () => {
           />
           <div id="reviewname">리뷰 작성</div>
         </S.Review>
-        <S.Recom>
+        <S.Recom onClick={gorec}>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}
@@ -234,7 +238,7 @@ const Signup = () => {
           />
           <div id="favname">즐겨찾기</div>
         </S.Fav>
-        <S.My>
+        <S.My onClick={gomy}>
           <img
             id="my"
             src={`${process.env.PUBLIC_URL}/images/My-none.svg`}

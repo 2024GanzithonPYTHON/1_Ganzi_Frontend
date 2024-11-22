@@ -9,6 +9,7 @@ import My from "./pages/My";
 import Recommend from "./pages/Recommend";
 import Main from "./pages/Main";
 import FavEdit from "./pages/FavEdit";
+import RevCheck from "./pages/RevCheck";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/recommend" element={<Recommend />} />
         <Route path="/" element={<Main />} />
         <Route path="/favorite/edit" element={<FavEdit />} />
+        <Route path="/recommend/review" element={<RevCheck />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as L from "../styles/StyledLogin";
 import axios from "axios";
@@ -51,7 +51,7 @@ const Login = () => {
         // 토큰 저장하기
         localStorage.setItem("authToken", token);
 
-        navigate("/my");
+        navigate("/");
       }
     } catch (error) {
       console.error("로그인 실패", error);
@@ -59,10 +59,46 @@ const Login = () => {
     }
   };
 
+  const [profileImage, setProfileImage] = useState(""); // 프로필 이미지 상태 저장
+  useEffect(() => {
+    // 프로필 이미지 가져오는 함수
+    const fetchProfileImage = async () => {
+      try {
+        const token = localStorage.getItem("authToken"); // 로컬스토리지에서 토큰 가져오기
+
+        const response = await axios.get("/users/profile/profile-picture", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Authorization 헤더에 토큰 추가
+          },
+        });
+
+        setProfileImage(response.data); // API에서 받은 이미지 URL 설정
+      } catch (error) {
+        console.error("Failed to fetch profile image:", error);
+      }
+    };
+
+    fetchProfileImage();
+  }, []);
+
   return (
     <L.Box>
       <L.Nav>
-        <L.Profile></L.Profile>
+        <L.Profile>
+          {profileImage ? (
+            <img
+              src={profileImage}
+              alt="프로필"
+              style={{
+                width: "76.166px",
+                height: "76.166px",
+                borderRadius: "50%",
+              }}
+            />
+          ) : (
+            ""
+          )}
+        </L.Profile>
         <L.Home>
           <img
             id="home"

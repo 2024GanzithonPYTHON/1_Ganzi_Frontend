@@ -67,6 +67,28 @@ const Favorite = () => {
     setShowModal(false); // 모달 닫기
   };
 
+  const [profileImage, setProfileImage] = useState(""); // 프로필 이미지 상태 저장
+  useEffect(() => {
+    // 프로필 이미지 가져오는 함수
+    const fetchProfileImage = async () => {
+      try {
+        const token = localStorage.getItem("authToken"); // 로컬스토리지에서 토큰 가져오기
+
+        const response = await axios.get("/users/profile/profile-picture", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Authorization 헤더에 토큰 추가
+          },
+        });
+
+        setProfileImage(response.data); // API에서 받은 이미지 URL 설정
+      } catch (error) {
+        console.error("Failed to fetch profile image:", error);
+      }
+    };
+
+    fetchProfileImage();
+  }, []);
+
   return (
     <F.Box>
       <Modal
@@ -78,7 +100,21 @@ const Favorite = () => {
       />{" "}
       {/* 모달 추가 */}
       <F.Nav>
-        <F.Profile></F.Profile>
+        <F.Profile>
+          {profileImage ? (
+            <img
+              src={profileImage}
+              alt="프로필"
+              style={{
+                width: "76.166px",
+                height: "76.166px",
+                borderRadius: "50%",
+              }}
+            />
+          ) : (
+            ""
+          )}
+        </F.Profile>
         <F.Home>
           <img
             id="home"
