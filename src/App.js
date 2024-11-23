@@ -15,6 +15,7 @@ import Reward from "./pages/Reward";
 import Complete from "./pages/Complete";
 import MainModal from "./pages/MainModal";
 import RecomModal from "./pages/RecomModal";
+import Recommend from "./pages/Recommend";
 import ReviewModal from "./pages/ReviewModal";
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route path="/complete" element={<Complete />} />
         <Route path="/MainModal" element={<MainModal />} />
         <Route path="RecomModal" element={<RecomModal />} />
+        <Route path="Recommend" element={<Recommend />} />
         <Route path="ReviewModal" element={<ReviewModal />} />
       </Routes>
     </BrowserRouter>
