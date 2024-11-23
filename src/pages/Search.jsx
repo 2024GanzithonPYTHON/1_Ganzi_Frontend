@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "../styles/StyledSearch";
+import axios from "axios";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -16,6 +17,14 @@ const Search = () => {
 
   const gomy = () => {
     navigate("/my");
+  };
+
+  const gohome = () => {
+    navigate("/main");
+  };
+
+  const gorec = () => {
+    navigate("/recommend");
   };
 
   const [recentSearches, setRecentSearches] = useState([]); // 검색어 목록 상태
@@ -42,11 +51,87 @@ const Search = () => {
     }
   };
 
+  const [profileImage, setProfileImage] = useState(""); // 프로필 이미지 상태 저장
+  useEffect(() => {
+    // 프로필 이미지 가져오는 함수
+    const fetchProfileImage = async () => {
+      try {
+        const token = localStorage.getItem("authToken"); // 로컬스토리지에서 토큰 가져오기
+
+        const response = await axios.get("/users/profile/profile-picture", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Authorization 헤더에 토큰 추가
+          },
+        });
+
+        setProfileImage(response.data); // API에서 받은 이미지 URL 설정
+      } catch (error) {
+        console.error("Failed to fetch profile image:", error);
+      }
+    };
+
+    fetchProfileImage();
+  }, []);
+
+  const [searchResults, setSearchResults] = useState([]);
+  const [selectedPlace, setSelectedPlace] = useState(null);
+
+  // 카카오 지도 API로 장소 검색
+  const searchPlaces = async () => {
+    if (!searchInput.trim()) return;
+
+    const kakaoKey = "YOUR_KAKAO_API_KEY"; // 카카오 API 키
+    const url = `https://dapi.kakao.com/v2/local/search/keyword.json?query=${encodeURIComponent(
+      searchInput
+    )}`;
+    try {
+      const response = await axios.get(url, {
+        headers: { Authorization: `KakaoAK ${kakaoKey}` },
+      });
+      setSearchResults(response.data.documents); // 검색 결과 저장
+    } catch (error) {
+      console.error("Failed to search places:", error);
+    }
+  };
+
+  // 장소 선택 및 백엔드 API 호출
+  const handleSelectPlace = async (place) => {
+    setSelectedPlace(place); // 선택된 장소 저장
+
+    const requestBody = {
+      kakaoId: place.id,
+      name: place.place_name,
+    };
+
+    try {
+      const response = await axios.post("/place/kakao", requestBody);
+      console.log("Place saved successfully:", response.data);
+      alert("장소가 성공적으로 저장되었습니다!");
+    } catch (error) {
+      console.error("Failed to save place:", error);
+      alert("장소 저장에 실패했습니다.");
+    }
+  };
+
   return (
     <S.Box>
       <S.Nav>
-        <S.Profile></S.Profile>
-        <S.Home>
+        <S.Profile>
+          {profileImage ? (
+            <img
+              src={profileImage}
+              alt="프로필"
+              style={{
+                width: "76.166px",
+                height: "76.166px",
+                borderRadius: "50%",
+              }}
+            />
+          ) : (
+            ""
+          )}
+        </S.Profile>
+        <S.Home onClick={gohome}>
           <img
             id="home"
             src={`${process.env.PUBLIC_URL}/images/Home-none.svg`}
@@ -62,15 +147,15 @@ const Search = () => {
           />
           <div id="searchname">검색하기</div>
         </S.Search>
-        <S.Review>
+        {/* <S.Review>
           <img
             id="review"
             src={`${process.env.PUBLIC_URL}/images/Review-none.svg`}
             alt="리뷰"
           />
           <div id="reviewname">리뷰 작성</div>
-        </S.Review>
-        <S.Recom>
+        </S.Review> */}
+        <S.Recom onClick={gorec}>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}

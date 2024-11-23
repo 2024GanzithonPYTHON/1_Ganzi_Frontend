@@ -56,6 +56,10 @@ const Favorite = () => {
     navigate("/favorite/edit");
   };
 
+  const gohome = () => {
+    navigate("/main");
+  };
+
   const openModal = () => setShowModal(true);
   const closeModal = () => {
     // 모달 데이터 초기화
@@ -66,6 +70,28 @@ const Favorite = () => {
     });
     setShowModal(false); // 모달 닫기
   };
+
+  const [profileImage, setProfileImage] = useState(""); // 프로필 이미지 상태 저장
+  useEffect(() => {
+    // 프로필 이미지 가져오는 함수
+    const fetchProfileImage = async () => {
+      try {
+        const token = localStorage.getItem("authToken"); // 로컬스토리지에서 토큰 가져오기
+
+        const response = await axios.get("/users/profile/profile-picture", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Authorization 헤더에 토큰 추가
+          },
+        });
+
+        setProfileImage(response.data); // API에서 받은 이미지 URL 설정
+      } catch (error) {
+        console.error("Failed to fetch profile image:", error);
+      }
+    };
+
+    fetchProfileImage();
+  }, []);
 
   return (
     <F.Box>
@@ -78,8 +104,22 @@ const Favorite = () => {
       />{" "}
       {/* 모달 추가 */}
       <F.Nav>
-        <F.Profile></F.Profile>
-        <F.Home>
+        <F.Profile>
+          {profileImage ? (
+            <img
+              src={profileImage}
+              alt="프로필"
+              style={{
+                width: "76.166px",
+                height: "76.166px",
+                borderRadius: "50%",
+              }}
+            />
+          ) : (
+            ""
+          )}
+        </F.Profile>
+        <F.Home onClick={gohome}>
           <img
             id="home"
             src={`${process.env.PUBLIC_URL}/images/Home-none.svg`}
@@ -95,14 +135,14 @@ const Favorite = () => {
           />
           <div id="searchname">검색하기</div>
         </F.Search>
-        <F.Review>
+        {/* <F.Review>
           <img
             id="review"
             src={`${process.env.PUBLIC_URL}/images/Review-none.svg`}
             alt="리뷰"
           />
           <div id="reviewname">리뷰 작성</div>
-        </F.Review>
+        </F.Review> */}
         <F.Recom onClick={gorec}>
           <img
             id="recom"
