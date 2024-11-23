@@ -29,6 +29,7 @@ export const ModalContainer = styled.div`
 `;
 
 export const TagContainer = styled.div`
+  padding-top: 30px;
   display: flex;
   justify-content: center; /* 중앙 정렬 */
   gap: 30px; /* 태그 사이 간격 설정 */
@@ -53,14 +54,17 @@ export const Description = styled.p`
 
 export const Button = styled.button`
   padding: 10px 15px;
+  width: 267px;
+  height: 67px;
+  flex-shrink: 0;
   border: none;
   border-radius: 5px;
-  background-color: transparent; /* 배경색을 투명으로 설정 */
-  color: #A5A5A5; /* 글자 색깔 변경 */
-  cursor: pointer;
-  transition: color 0.3s; /* 색상 변화 부드럽게 전환 */
+  background-color: #F8F8F8; /* 기본 배경 색상 */
+  color: #333; /* 기본 글자 색상 */
+  transition: color 0.3s, background-color 0.3s; /* 색상 변화 부드럽게 전환 */
 
   &:hover {
-    color: #FF3434; /* 호버 시 색상 변경 (필요시 조정 가능) */
+    background-color: #FF3434; /* 호버 시 배경 색상 변경 */
+    color: white; /* 호버 시 글자 색상 변경 */
   }
 `;

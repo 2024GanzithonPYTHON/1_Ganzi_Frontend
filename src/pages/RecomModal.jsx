@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // useNavigate 훅 추가
 import * as R from "../styles/StyledRecomModal";
 import ReviewModal from './ReviewModal'; // ReviewModal을 import합니다.
 
 const ReviewSelectionModal = ({ onClose, onReviewSelect }) => {
+  const navigate = useNavigate(); // useNavigate 훅 사용
+
   return (
     <R.Overlay onClick={onClose}>
       <R.ModalContainer onClick={(e) => e.stopPropagation()}>
@@ -23,27 +26,27 @@ const ReviewSelectionModal = ({ onClose, onReviewSelect }) => {
         >
           내가 작성한 리뷰 불러오기
         </R.Button>
-
-        <R.Button
-          primary
-          style={{ width: "600px", height: "67px", flexShrink: 0 }}
-          onClick={() => alert("키워드로 검색하기!")}
+        
+        <R.Button 
+          primary 
+          style={{ width: '600px', height: '67px', flexShrink: 0 }} 
+          onClick={() => alert('키워드로 검색하기!')}
         >
           키워드로 검색하기
         </R.Button>
-
-        <R.Button
-          primary
-          style={{ width: "600px", height: "67px", flexShrink: 0 }}
-          onClick={() => alert("지도에서 장소 클릭하기!")}
+        
+        <R.Button 
+          primary 
+          style={{ width: '600px', height: '67px', flexShrink: 0 }} 
+          onClick={() => alert('지도에서 장소 클릭하기!')}
         >
           지도에서 장소 클릭하기
         </R.Button>
-
-        <R.Button
-          primary
-          style={{ width: "600px", height: "67px", flexShrink: 0 }}
-          onClick={() => alert("다음 단계로 넘어가기!")}
+        
+        <R.Button 
+          primary 
+          style={{ width: '600px', height: '67px', flexShrink: 0 }} 
+          onClick={() => alert('다음 단계로 넘어가기!')}
         >
           다음 단계로 넘어가기
         </R.Button>
@@ -53,6 +56,13 @@ const ReviewSelectionModal = ({ onClose, onReviewSelect }) => {
 };
 
 const CategoryInputModal = ({ onClose }) => {
+  const navigate = useNavigate(); // useNavigate 훅 사용
+
+  const handleRecommendationClick = () => {
+    // 추천 페이지로 이동
+    navigate('/recommend'); // '/recommend'는 Recommend.jsx의 경로
+  };
+
   return (
     <R.Overlay onClick={onClose}>
       <R.ModalContainer onClick={(e) => e.stopPropagation()}>
@@ -66,62 +76,25 @@ const CategoryInputModal = ({ onClose }) => {
         </R.CloseButton>
         <R.ModalTitle>카테고리와 지역을 입력해 주세요</R.ModalTitle>
 
-        <select
-          style={{
-            width: "600px",
-            height: "67px",
-            flexShrink: 0,
-            marginBottom: "10px",
-            backgroundColor: "#FAFAFA",
-            border: "1px solid #E6E6E6",
-          }}
-        >
-          <option value="" disabled defaultValue>
-            메인 카테고리 선택
-          </option>
+        <select style={{ width: '600px', height: '67px', flexShrink: 0, marginBottom: '10px', backgroundColor: '#FAFAFA', border: '1px solid #E6E6E6' }}>
+          <option value="" disabled defaultValue>메인 카테고리 선택</option>
           <option value="category1">카테고리 1</option>
           <option value="category2">카테고리 2</option>
         </select>
 
-        <select
-          style={{
-            width: "600px",
-            height: "67px",
-            flexShrink: 0,
-            marginBottom: "10px",
-            backgroundColor: "#FAFAFA",
-            border: "1px solid #E6E6E6",
-          }}
-        >
-          <option value="" disabled defaultValue>
-            세부 카테고리 선택
-          </option>
+        <select style={{ width: '600px', height: '67px', flexShrink: 0, marginBottom: '10px', backgroundColor: '#FAFAFA', border: '1px solid #E6E6E6' }}>
+          <option value="" disabled defaultValue>세부 카테고리 선택</option>
           <option value="subcategory1">세부 카테고리 1</option>
           <option value="subcategory2">세부 카테고리 2</option>
         </select>
 
-        <select
-          style={{
-            width: "600px",
-            height: "67px",
-            flexShrink: 0,
-            marginBottom: "10px",
-            backgroundColor: "#FAFAFA",
-            border: "1px solid #E6E6E6",
-          }}
-        >
-          <option value="" disabled defaultValue>
-            지역 선택
-          </option>
+        <select style={{ width: '600px', height: '67px', flexShrink: 0, marginBottom: '10px', backgroundColor: '#FAFAFA', border: '1px solid #E6E6E6' }}>
+          <option value="" disabled defaultValue>지역 선택</option>
           <option value="region1">지역 1</option>
           <option value="region2">지역 2</option>
         </select>
 
-        <R.Button
-          primary
-          style={{ width: "600px", height: "67px", flexShrink: 0 }}
-          onClick={() => alert("추천 받기!")}
-        >
+        <R.Button primary style={{ width: '600px', height: '67px', flexShrink: 0 }} onClick={() => alert('추천 받기!')}>
           추천 받을래요
         </R.Button>
       </R.ModalContainer>

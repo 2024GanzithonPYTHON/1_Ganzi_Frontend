@@ -24,7 +24,7 @@ export const ModalContainer = styled.div`
   height: 554px; /* 자동 높이 조정 */
   max-height: 80%; /* 최대 높이 설정 */
   overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease; /* 부드러운 전환 효과 */
 `;
 
@@ -62,7 +62,7 @@ export const Button = styled.button`
   cursor: pointer;
   justify-content: center; /* 수평 중앙 정렬 */
   align-items: center; /* 수직 중앙 정렬 */
-  margin: 30px 0; /* 버튼 간 간격 */
+  margin: 20px 0; /* 버튼 간 간격 */
   font-size: 25px;
   transition: background 0.3s;
 
@@ -71,3 +71,13 @@ export const Button = styled.button`
     color: white; /* 텍스트 색상도 흰색으로 변경 */
   }
 `;
+
+export const Dropbox = styled.div`
+  display: flex;
+  flex-direction: column; /* 세로 방향으로 정렬 */
+  align-items: center; /* 수평 중앙 정렬 */
+  width: 100%; /* 부모 컨테이너의 너비에 맞춤 */
+  margin-bottom: 20px; /* 아래쪽 여백 추가 */
+`;
+
+

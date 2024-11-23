@@ -23,7 +23,7 @@ export const Nav = styled.div`
 `;
 
 export const MapContainer = styled.div`
-  width: 80%; /*지도 너비*/
+  width: 100%; /*지도 너비*/
   height: 100%;
   position: relative;
 `;
@@ -162,7 +162,6 @@ export const Set = styled.div`
 export const ContentArea = styled.div`
   width: 100%;
   height: 200vh;
-  padding-top: 52px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -227,9 +226,8 @@ export const SearchBar = styled.div`
 export const MapArea = styled.div`
   flex: 1;
   width: 100%;
-  height: 200vh;
-  flex-shrink: 0;
-  position: relative;
+  position: avsolute;
+  top: 60px
 `;
 
 // 하단 정보 섹션
