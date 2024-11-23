@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-import ReactDOM from "react-dom";
 import * as M from "../styles/StyledMain";
-import Modal from './MainModal';
+import MainModal from './MainModal';
+import RecomModal from './RecomModal';
 
 const Main = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [places, setPlaces] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState("");
+  const [showRecomModal, setShowRecomModal] = useState(false);
 
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
@@ -52,7 +52,9 @@ const Main = () => {
     document.head.appendChild(script);
 
     return () => {
-      document.head.removeChild(script);
+      if (script) {
+        document.head.removeChild(script);
+      }
     };
   }, []);
 
@@ -67,7 +69,6 @@ const Main = () => {
     const ps = new window.kakao.maps.services.Places();
     ps.keywordSearch(searchQuery, (data, status) => {
       if (status === window.kakao.maps.services.Status.OK) {
-        setPlaces(data);
         displayMarkers(data);
       } else {
         alert("검색 결과가 없습니다.");
@@ -182,25 +183,18 @@ const Main = () => {
         <M.MapArea>
           <div ref={mapRef} style={{ width: "100%", height: "200vh" }}></div>
         </M.MapArea>
-        <M.InfoSection>
-          <ul>
-            {places.map((place, index) => (
-              <li key={index}>
-                <strong>{place.place_name}</strong>
-                <p>{place.address_name}</p>
-              </li>
-            ))}
-          </ul>
-        </M.InfoSection>
       </M.ContentArea>
-      {modalVisible && (
-        <Modal isOpen={modalVisible} onClose={closeModal}>
-          <div>
-            <h2>장소 정보</h2>
-            <p>{modalContent}</p>
-            <button onClick={closeModal}>닫기</button>
-          </div>
-        </Modal>
+
+      {modalVisible && !showRecomModal && ( // RecomModal이 아닌 경우에만 MainModal을 보여줌
+        <MainModal 
+          content={modalContent} 
+          onClose={() => setModalVisible(false)} 
+          setShowRecomModal={setShowRecomModal} // RecomModal 띄우기 위한 함수 전달
+        />
+      )}
+
+      {showRecomModal && (
+        <RecomModal onClose={() => setShowRecomModal(false)} />
       )}
     </M.Box>
   );

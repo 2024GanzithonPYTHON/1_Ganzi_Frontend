@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import * as R from "../styles/StyledRecomModal";
+import ReviewModal from './ReviewModal'; // ReviewModal을 import합니다.
 
-const ReviewSelectionModal = ({ onClose }) => {
+const ReviewSelectionModal = ({ onClose, onReviewSelect }) => {
   return (
-    <R.ModalOverlay onClick={onClose}>
+    <R.Overlay onClick={onClose}>
       <R.ModalContainer onClick={(e) => e.stopPropagation()}>
         <R.CloseButton onClick={onClose}>
           <img
@@ -14,11 +15,11 @@ const ReviewSelectionModal = ({ onClose }) => {
           />
         </R.CloseButton>
         <R.ModalTitle>원하는 방식을 선택해 주세요</R.ModalTitle>
-        
+
         <R.Button 
           primary 
           style={{ width: '600px', height: '67px', flexShrink: 0 }} 
-          onClick={() => alert('내가 작성한 리뷰 불러오기!')}
+          onClick={onReviewSelect} // 리뷰 불러오기 클릭 시 호출
         >
           내가 작성한 리뷰 불러오기
         </R.Button>
@@ -47,13 +48,13 @@ const ReviewSelectionModal = ({ onClose }) => {
           다음 단계로 넘어가기
         </R.Button>
       </R.ModalContainer>
-    </R.ModalOverlay>
+    </R.Overlay>
   );
 };
 
 const CategoryInputModal = ({ onClose }) => {
   return (
-    <R.ModalOverlay onClick={onClose}>
+    <R.Overlay onClick={onClose}>
       <R.ModalContainer onClick={(e) => e.stopPropagation()}>
         <R.CloseButton onClick={onClose}>
           <img
@@ -87,13 +88,14 @@ const CategoryInputModal = ({ onClose }) => {
           추천 받을래요
         </R.Button>
       </R.ModalContainer>
-    </R.ModalOverlay>
+    </R.Overlay>
   );
 };
 
 const RecomModal = ({ onClose }) => {
   const [showCategoryInput, setShowCategoryInput] = useState(false);
   const [showReviewSelection, setShowReviewSelection] = useState(false);
+  const [showReviewModal, setShowReviewModal] = useState(false); // ReviewModal을 보여줄 상태 추가
 
   const handleRecommendationClick = () => {
     setShowCategoryInput(true);
@@ -103,14 +105,28 @@ const RecomModal = ({ onClose }) => {
     setShowReviewSelection(true);
   };
 
+  const handleReviewSelect = () => {
+    setShowReviewSelection(false); // 리뷰 선택 모달 닫기
+    setShowReviewModal(true); // ReviewModal 열기
+  };
+
   return (
     <>
-      {showReviewSelection ? (
-        <ReviewSelectionModal onClose={() => setShowReviewSelection(false)} />
+      {showReviewModal ? (
+        <ReviewModal 
+          reviews={[
+            { name: '이디야커피', category: '카페', address: '경기 성남시 중원구 산성대로 460', phone: '031-749-9366', message: '4건의 리뷰를 작성했어요', highlighted: true },
+            // 추가 리뷰 데이터...
+          ]}
+          onClose={() => setShowReviewModal(false)} 
+          onNext={() => alert('다음 단계로 넘어가기!')} // 다음 단계로 넘어가는 로직
+        />
+      ) : showReviewSelection ? (
+        <ReviewSelectionModal onClose={() => setShowReviewSelection(false)} onReviewSelect={handleReviewSelect} />
       ) : showCategoryInput ? (
         <CategoryInputModal onClose={() => setShowCategoryInput(false)} />
       ) : (
-        <R.ModalOverlay onClick={onClose}>
+        <R.Overlay onClick={onClose}>
           <R.ModalContainer onClick={(e) => e.stopPropagation()}>
             <R.CloseButton onClick={onClose}>
               <img
@@ -130,7 +146,7 @@ const RecomModal = ({ onClose }) => {
               <p>내가 만족했던 장소를 사람들에게 공유할래요!</p>
             </R.Button>
           </R.ModalContainer>
-        </R.ModalOverlay>
+        </R.Overlay>
       )}
     </>
   );
