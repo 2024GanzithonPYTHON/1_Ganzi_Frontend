@@ -29,13 +29,6 @@ export const Profile = styled.div`
   flex-shrink: 0;
   border-radius: 50%; /* 둥근 모서리를 50%로 설정해 원 모양 생성 */
   background: gray;
-
-  img {
-    width: 76.166px;
-    height: 76.166px;
-    flex-shrink: 0;
-    border-radius: 50%; /* 둥근 모서리를 50%로 설정해 원 모양 생성 */
-  }
 `;
 
 export const Home = styled.div`
@@ -97,7 +90,7 @@ export const Recom = styled.div`
   }
 
   #recomname {
-    color: #b7b7b7;
+    color: #ff3434;
     font-family: NanumGothic;
     font-size: 15px;
     font-style: normal;
@@ -133,7 +126,7 @@ export const My = styled.div`
   }
 
   #myname {
-    color: #ff3434;
+    color: #b7b7b7;
     font-family: NanumGothic;
     font-size: 15px;
     font-style: normal;
@@ -172,13 +165,11 @@ export const Title = styled.div`
   //   justify-content: center;
   //   text-align: center;
   align-items: center;
-
   #back {
     width: 59px;
     height: 59px;
     flex-shrink: 0;
   }
-
   #name {
     color: #272727;
     font-family: NanumGothic;
@@ -188,125 +179,177 @@ export const Title = styled.div`
     line-height: normal;
     letter-spacing: -1.225px;
   }
-
-  #setting {
-    margin-left: auto;
-    width: 35.796px;
-    height: 36.8px;
-    flex-shrink: 0;
-    margin-right: 73.2px;
-  }
 `;
 
-export const Infbox = styled.div`
-  width: 100%;
-  height: 100%;
+export const Main = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 31px;
-  margin-top: 24px;
-  // justify-content: center;
+  margin-top: 40px;
+  width: 100%;
+  justify-content: center;
   align-items: center;
+  height: 425px;
 `;
 
 export const Img = styled.div`
-  width: 143px;
-  height: 143px;
-  flex-shrink: 0;
+  height: 204px;
+  border-radius: 7.84px 7.84px 0 0;
   background: #d9d9d9;
-  border-radius: 50%; /* 둥근 모서리를 50%로 설정해 원 모양 생성 */
-
-  img {
-    width: 143px;
-    height: 143px;
-    flex-shrink: 0;
-    border-radius: 50%; /* 둥근 모서리를 50%로 설정해 원 모양 생성 */
-  }
+  width: 600px;
 `;
 
-export const Name = styled.div`
-  color: #797979;
-  font-family: NanumGothic;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: -1.4px;
+export const Detail = styled.div`
+width: 600px;
+height: 220px;
+display: flex
+flex-direction: column;
+background: #fff;
+border: 1px solid #e6e6e6;
+border-radius: 0 0 7.84px 7.84px;
+gap: 20px;
+justify-content: center;
+align-items: center;
 `;
 
-export const Inf = styled.div`
+export const Keyword = styled.div`
   display: flex;
   flex-direction: row;
   gap: 10px;
   justify-content: center;
+  align-items: center;
+  margin-top: 22px;
 `;
 
-export const Age = styled.div`
-  width: 121.111px;
-  height: 53.827px;
+export const WordBox = styled.div`
+  width: 167.65px;
+  height: 39.055px;
   flex-shrink: 0;
-  border-radius: 138.271px;
-  border: 0.702px solid #e1e1e1;
-  display: flex;
-  background: #f3f3f3;
-  align-items: center;
+  border-radius: 9.63px;
+  border: 1px solid #e6e6e6;
+  background: #f8f8f8;
   justify-content: center;
-
-  div {
-    color: #797979;
-    text-align: center;
-    font-family: NanumGothic;
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.595px;
-  }
+  align-items: center;
+  display: flex;
 `;
 
-export const Live = styled.div`
-  width: 121.111px;
-  height: 53.827px;
-  flex-shrink: 0;
-  border-radius: 138.271px;
-  border: 0.702px solid #e1e1e1;
-  background: #f3f3f3;
+export const Inf = styled.div`
+  width: 100%;
+  margin-top: 15px;
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
+  padding: 0 48px;
+`;
 
-  div {
-    color: #797979;
-    text-align: center;
+export const Place = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+`;
+
+export const Name = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+
+  #name {
+    color: #272727;
     font-family: NanumGothic;
-    font-size: 17px;
+    font-size: 27.448px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    letter-spacing: -0.595px;
+    letter-spacing: -0.961px;
+  }
+
+  #categoryid {
+    color: #bfbfbf;
+    font-family: NanumGothic;
+    font-size: 15.685px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.549px;
+
+    align-self: center; /* 특정 요소에 대해 alignment 재조정 */
+    margin-top: auto; /* 필요 시 추가적인 여백 조정 */
   }
 `;
 
-export const Hr = styled.div`
-  margin-top: 8px;
-  width: 720px;
-  height: 2px;
-  background: #f3f3f3;
-`;
-
-export const Manage = styled.div`
-  margin-top: 30px;
-  width: 600px;
-  height: 102px;
-  flex-shrink: 0;
-  background: #fff;
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
+export const Loc = styled.div`
   display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
   align-items: center;
 
+  img {
+    width: 25.879px;
+    height: 25.879px;
+    flex-shrink: 0;
+  }
+
   div {
-    margin-left: 60px;
+    color: #a5a5a5;
+    font-family: NanumGothic;
+    font-size: 17.253px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.604px;
+  }
+`;
+
+export const Tel = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 25.879px;
+    height: 25.879px;
+    flex-shrink: 0;
+  }
+
+  div {
+    color: #a5a5a5;
+    font-family: NanumGothic;
+    font-size: 17.253px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.604px;
+  }
+`;
+
+export const Favorite = styled.div`
+  margin-left: auto;
+  width: 31.369px;
+  height: 31.369px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: red;
+`;
+
+export const Photo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 82px;
+  width: 100%;
+`;
+
+export const PhotoRev = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 60px;
+  gap: 10px;
+
+  #title {
     color: #797979;
     font-family: NanumGothic;
     font-size: 25px;
@@ -315,21 +358,61 @@ export const Manage = styled.div`
     line-height: normal;
     letter-spacing: -0.875px;
   }
+
+  #figure {
+    color: #d9d9d9;
+    font-family: NanumGothic;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.525px;
+
+    align-self: center; /* 특정 요소에 대해 alignment 재조정 */
+    margin-top: auto; /* 필요 시 추가적인 여백 조정 */
+  }
+
+  img {
+    margin-left: auto;
+    margin-right: 60px;
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+  }
 `;
 
-export const Edit = styled.div`
-  width: 600px;
-  height: 102px;
-  flex-shrink: 0;
-  background: #fff;
-  //   stroke-width: 0.784px;
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
+export const PhotoList = styled.div`
   display: flex;
+  flex-direction: row;
+  gap: 20px;
   align-items: center;
+  margin-left: 60px;
+`;
 
-  div {
-    margin-left: 60px;
+export const Image = styled.div`
+  width: 250px;
+  height: 200px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #d9d9d9;
+`;
+
+export const Line = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 82px;
+  gap: 25px;
+  width: 100%;
+`;
+
+export const LineRev = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-left: 60px;
+
+  #title {
     color: #797979;
     font-family: NanumGothic;
     font-size: 25px;
@@ -338,50 +421,70 @@ export const Edit = styled.div`
     line-height: normal;
     letter-spacing: -0.875px;
   }
-`;
 
-export const Logout = styled.div`
-  width: 600px;
-  height: 102px;
-  flex-shrink: 0;
-  background: #fff;
-  //   stroke-width: 0.784px;
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-
-  div {
-    margin-left: 60px;
-    color: #797979;
+  #figure {
+    color: #d9d9d9;
     font-family: NanumGothic;
-    font-size: 25px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    letter-spacing: -0.875px;
+    letter-spacing: -0.525px;
+
+    align-self: center; /* 특정 요소에 대해 alignment 재조정 */
+    margin-top: auto; /* 필요 시 추가적인 여백 조정 */
+  }
+
+  img {
+    margin-right: 60px;
+    margin-left: auto;
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
   }
 `;
 
-export const Delete = styled.div`
-  width: 600px;
-  height: 102px;
-  flex-shrink: 0;
-  background: #fff;
-  //   stroke-width: 0.784px;
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
+export const ReviewList = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+  margin-left: 60px;
+`;
+
+export const Reviews = styled.div`
+  width: 364px;
+  height: 125px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  align-items: flex-start;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 
   div {
-    margin-left: 60px;
+    margin-left: 32px;
+  }
+
+  #nick {
     color: #797979;
     font-family: NanumGothic;
-    font-size: 25px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    letter-spacing: -0.875px;
+    letter-spacing: -0.56px;
+  }
+
+  #content {
+    color: #d9d9d9;
+    font-family: NanumGothic;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 149.965%; /* 22.495px */
+    letter-spacing: -0.525px;
   }
 `;

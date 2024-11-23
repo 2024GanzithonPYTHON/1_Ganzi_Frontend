@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import * as F from "../styles/StyledFavoriteModal";
 import axios from "axios";
 
-const FavoriteModal = ({ isOpen, onClose, modalData, setModalData }) => {
+const FavoriteModal = ({
+  isOpen,
+  onClose,
+  modalData,
+  setModalData,
+  addFolder,
+}) => {
   const { inputValue, selectedColor, selectedColorId } = modalData;
   // const [selectedColor, setSelectedColor] = useState("");
   // const [selectedColorId, setSelectedColorId] = useState("색상을 선택해주세요");
@@ -46,7 +52,7 @@ const FavoriteModal = ({ isOpen, onClose, modalData, setModalData }) => {
 
       const requestBody = {
         folderName: inputValue, // 폴더명
-        color: selectedColorId, // 선택된 색상 ID
+        color: selectedColor, // 선택된 색상 ID
       };
 
       // console.log("요청 데이터:", requestBody); // 디버깅용 요청 데이터 출력
@@ -64,6 +70,8 @@ const FavoriteModal = ({ isOpen, onClose, modalData, setModalData }) => {
 
       if (response.status === 200 || response.status === 201) {
         alert("폴더가 성공적으로 생성되었습니다!");
+        const newFolder = response.data; // 서버에서 반환된 새 폴더 데이터
+        addFolder(newFolder); // 새로운 폴더를 상태에 추가
 
         // 모달 창 닫기
         onClose();

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as L from "../styles/StyledLogin";
 import axios from "axios";
@@ -51,7 +51,7 @@ const Login = () => {
         // 토큰 저장하기
         localStorage.setItem("authToken", token);
 
-        navigate("/my");
+        navigate("/main");
       }
     } catch (error) {
       console.error("로그인 실패", error);
@@ -59,10 +59,46 @@ const Login = () => {
     }
   };
 
+  const [profileImage, setProfileImage] = useState(""); // 프로필 이미지 상태 저장
+  useEffect(() => {
+    // 프로필 이미지 가져오는 함수
+    const fetchProfileImage = async () => {
+      try {
+        const token = localStorage.getItem("authToken"); // 로컬스토리지에서 토큰 가져오기
+
+        const response = await axios.get("/users/profile/profile-picture", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Authorization 헤더에 토큰 추가
+          },
+        });
+
+        setProfileImage(response.data); // API에서 받은 이미지 URL 설정
+      } catch (error) {
+        console.error("Failed to fetch profile image:", error);
+      }
+    };
+
+    fetchProfileImage();
+  }, []);
+
   return (
     <L.Box>
       <L.Nav>
-        <L.Profile></L.Profile>
+        <L.Profile>
+          {profileImage ? (
+            <img
+              src={profileImage}
+              alt="프로필"
+              style={{
+                width: "76.166px",
+                height: "76.166px",
+                borderRadius: "50%",
+              }}
+            />
+          ) : (
+            ""
+          )}
+        </L.Profile>
         <L.Home>
           <img
             id="home"
@@ -71,7 +107,7 @@ const Login = () => {
           />
           <div id="homename">메인홈</div>
         </L.Home>
-        <L.Search onClick={gosearch}>
+        <L.Search>
           <img
             id="search"
             src={`${process.env.PUBLIC_URL}/images/Search-none.svg`}
@@ -79,15 +115,15 @@ const Login = () => {
           />
           <div id="searchname">검색하기</div>
         </L.Search>
-        <L.Review>
+        {/* <L.Review>
           <img
             id="review"
             src={`${process.env.PUBLIC_URL}/images/Review-none.svg`}
             alt="리뷰"
           />
           <div id="reviewname">리뷰 작성</div>
-        </L.Review>
-        <L.Recom onClick={gorec}>
+        </L.Review> */}
+        <L.Recom>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}
@@ -95,7 +131,7 @@ const Login = () => {
           />
           <div id="recomname">추천장소</div>
         </L.Recom>
-        <L.Fav onClick={gofav}>
+        <L.Fav>
           <img
             id="fav"
             src={`${process.env.PUBLIC_URL}/images/Fav-none.svg`}
@@ -103,7 +139,7 @@ const Login = () => {
           />
           <div id="favname">즐겨찾기</div>
         </L.Fav>
-        <L.My onClick={gomy}>
+        <L.My>
           <img
             id="my"
             src={`${process.env.PUBLIC_URL}/images/My-none.svg`}
@@ -111,13 +147,6 @@ const Login = () => {
           />
           <div id="myname">마이페이지</div>
         </L.My>
-        <L.Set>
-          <img
-            id="setting"
-            src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
-            alt="설정"
-          />
-        </L.Set>
       </L.Nav>
       <L.Container>
         <L.Logo>

@@ -11,18 +11,6 @@ const Signup = () => {
     navigate(-1);
   };
 
-  const gosearch = () => {
-    navigate("/search");
-  };
-
-  const gofav = () => {
-    navigate("/favorite");
-  };
-
-  const gohome = () => {
-    navigate("/");
-  };
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -194,7 +182,7 @@ const Signup = () => {
     <S.Box>
       <S.Nav>
         <S.Profile></S.Profile>
-        <S.Home onClick={gohome}>
+        <S.Home>
           <img
             id="home"
             src={`${process.env.PUBLIC_URL}/images/Home.svg`}
@@ -202,7 +190,7 @@ const Signup = () => {
           />
           <div id="homename">메인홈</div>
         </S.Home>
-        <S.Search onClick={gosearch}>
+        <S.Search>
           <img
             id="search"
             src={`${process.env.PUBLIC_URL}/images/Search-none.svg`}
@@ -210,14 +198,14 @@ const Signup = () => {
           />
           <div id="searchname">검색하기</div>
         </S.Search>
-        <S.Review>
+        {/* <S.Review>
           <img
             id="review"
             src={`${process.env.PUBLIC_URL}/images/Review-none.svg`}
             alt="리뷰"
           />
           <div id="reviewname">리뷰 작성</div>
-        </S.Review>
+        </S.Review> */}
         <S.Recom>
           <img
             id="recom"
@@ -242,13 +230,6 @@ const Signup = () => {
           />
           <div id="myname">마이페이지</div>
         </S.My>
-        <S.Set>
-          <img
-            id="setting"
-            src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
-            alt="설정"
-          />
-        </S.Set>
       </S.Nav>
       <S.Container>
         <S.Title>

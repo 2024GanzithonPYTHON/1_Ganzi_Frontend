@@ -34,7 +34,14 @@ export const Profile = styled.div`
   height: 76.166px;
   flex-shrink: 0;
   border-radius: 50%; /* 둥근 모서리를 50%로 설정해 원 모양 생성 */
-  background: url(<path-to-image>) lightgray 50% / cover no-repeat;
+  background: gray;
+
+  img {
+    width: 76.166px;
+    height: 76.166px;
+    flex-shrink: 0;
+    border-radius: 50%; /* 둥근 모서리를 50%로 설정해 원 모양 생성 */
+  }
 
   #Profile {
     margin-top: 1000px;
@@ -233,9 +240,8 @@ export const InfoSection = styled.div`
   font-size: 14px;
   background-color: #fff;
   border-top: 1px solid #dee2e6;
-  fill: #FFF;
-filter: drop-shadow(0px 4px 17px rgba(37, 37, 37, 0.20));
-
+  fill: #fff;
+  filter: drop-shadow(0px 4px 17px rgba(37, 37, 37, 0.2));
 
   h3 {
     margin: 0;
@@ -250,21 +256,20 @@ filter: drop-shadow(0px 4px 17px rgba(37, 37, 37, 0.20));
     gap: 10px;
   }
 
-    button {
-      flex: 1;
-      padding: 10px;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+  button {
+    flex: 1;
+    padding: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 
-      &:first-child {
-        background-color: #007bff;
-      }
+  &:first-child {
+    background-color: #007bff;
+  }
 
-.modal-footer button:hover {
-  background-color: #0056b3;
-}
-
+  .modal-footer button:hover {
+    background-color: #0056b3;
+  }
 `;
