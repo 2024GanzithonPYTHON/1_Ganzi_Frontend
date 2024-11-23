@@ -1,0 +1,10 @@
+<<<<<<< HEAD
+<svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
+  <path d="M18.694 38.3224V27.1061H26.1716V38.3224H35.5185V23.3673H41.1267L22.4328 6.54285L3.7389 23.3673H9.34706V38.3224H18.694Z" fill="#FF3434"/>
+=======
+<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="home">
+<path id="Vector" d="M18.6941 38.3221V27.1057H26.1717V38.3221H35.5186V23.367H41.1268L22.4329 6.54248L3.73901 23.367H9.34718V38.3221H18.6941Z" fill="#B7B7B7"/>
+</g>
+>>>>>>> a4a9a48a53243425ffcfb635d3a6259dd212e5fe
+</svg>
