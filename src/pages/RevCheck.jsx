@@ -26,6 +26,10 @@ const RevCheck = () => {
     navigate("/search");
   };
 
+  const gohome = () => {
+    navigate("/main");
+  };
+
   useEffect(() => {
     // 프로필 이미지 가져오는 함수
     const fetchProfileImage = async () => {
@@ -65,7 +69,7 @@ const RevCheck = () => {
             ""
           )}
         </R.Profile>
-        <R.Home>
+        <R.Home onClick={gohome}>
           <img
             id="home"
             src={`${process.env.PUBLIC_URL}/images/Home-none.svg`}
@@ -81,14 +85,14 @@ const RevCheck = () => {
           />
           <div id="searchname">검색하기</div>
         </R.Search>
-        <R.Review>
+        {/* <R.Review>
           <img
             id="review"
             src={`${process.env.PUBLIC_URL}/images/Review-none.svg`}
             alt="리뷰"
           />
           <div id="reviewname">리뷰 작성</div>
-        </R.Review>
+        </R.Review> */}
         <R.Recom>
           <img
             id="recom"

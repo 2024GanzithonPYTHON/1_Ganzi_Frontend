@@ -10,21 +10,23 @@ import Recommend from "./pages/Recommend";
 import Main from "./pages/Main";
 import FavEdit from "./pages/FavEdit";
 import RevCheck from "./pages/RevCheck";
+import RecomModal from "./pages/RecomModal";
 
 function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/search" element={<Search />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/my" element={<My />} />
         <Route path="/recommend" element={<Recommend />} />
-        <Route path="/" element={<Main />} />
+        <Route path="/main" element={<Main />} />
         <Route path="/favorite/edit" element={<FavEdit />} />
-        <Route path="/recommend/review" element={<RevCheck />} />
+        <Route path="RecomModal" element={<RecomModal />} />
+        <Route path="/recommend/review" element={<RevCheck />} />{" "}
       </Routes>
     </BrowserRouter>
   );

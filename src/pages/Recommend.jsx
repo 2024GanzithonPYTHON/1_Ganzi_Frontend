@@ -159,14 +159,14 @@ const Recommend = () => {
           />
           <div id="searchname">검색하기</div>
         </R.Search>
-        <R.Review>
+        {/* <R.Review>
           <img
             id="review"
             src={`${process.env.PUBLIC_URL}/images/Review-none.svg`}
             alt="리뷰"
           />
           <div id="reviewname">리뷰 작성</div>
-        </R.Review>
+        </R.Review> */}
         <R.Recom>
           <img
             id="recom"

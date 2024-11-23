@@ -18,7 +18,7 @@ const My = () => {
   };
 
   const gohome = () => {
-    navigate("/");
+    navigate("/main");
   };
 
   const gosearch = () => {
@@ -155,14 +155,14 @@ const My = () => {
           />
           <div id="searchname">검색하기</div>
         </M.Search>
-        <M.Review>
+        {/* <M.Review>
           <img
             id="review"
             src={`${process.env.PUBLIC_URL}/images/Review-none.svg`}
             alt="리뷰"
           />
           <div id="reviewname">리뷰 작성</div>
-        </M.Review>
+        </M.Review> */}
         <M.Recom onClick={gorec}>
           <img
             id="recom"

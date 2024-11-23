@@ -84,7 +84,7 @@ const FavEdit = () => {
   };
 
   const gohome = () => {
-    navigate("/");
+    navigate("/main");
   };
 
   const openModal = () => setShowModal(true);
@@ -162,14 +162,14 @@ const FavEdit = () => {
           />
           <div id="searchname">검색하기</div>
         </F.Search>
-        <F.Review>
+        {/* <F.Review>
           <img
             id="review"
             src={`${process.env.PUBLIC_URL}/images/Review-none.svg`}
             alt="리뷰"
           />
           <div id="reviewname">리뷰 작성</div>
-        </F.Review>
+        </F.Review> */}
         <F.Recom onClick={gorec}>
           <img
             id="recom"

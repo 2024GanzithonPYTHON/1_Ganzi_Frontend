@@ -107,7 +107,7 @@ const Login = () => {
           />
           <div id="homename">메인홈</div>
         </L.Home>
-        <L.Search onClick={gosearch}>
+        <L.Search>
           <img
             id="search"
             src={`${process.env.PUBLIC_URL}/images/Search-none.svg`}
@@ -115,15 +115,15 @@ const Login = () => {
           />
           <div id="searchname">검색하기</div>
         </L.Search>
-        <L.Review>
+        {/* <L.Review>
           <img
             id="review"
             src={`${process.env.PUBLIC_URL}/images/Review-none.svg`}
             alt="리뷰"
           />
           <div id="reviewname">리뷰 작성</div>
-        </L.Review>
-        <L.Recom onClick={gorec}>
+        </L.Review> */}
+        <L.Recom>
           <img
             id="recom"
             src={`${process.env.PUBLIC_URL}/images/Recom-none.svg`}
@@ -131,7 +131,7 @@ const Login = () => {
           />
           <div id="recomname">추천장소</div>
         </L.Recom>
-        <L.Fav onClick={gofav}>
+        <L.Fav>
           <img
             id="fav"
             src={`${process.env.PUBLIC_URL}/images/Fav-none.svg`}
@@ -139,7 +139,7 @@ const Login = () => {
           />
           <div id="favname">즐겨찾기</div>
         </L.Fav>
-        <L.My onClick={gomy}>
+        <L.My>
           <img
             id="my"
             src={`${process.env.PUBLIC_URL}/images/My-none.svg`}
