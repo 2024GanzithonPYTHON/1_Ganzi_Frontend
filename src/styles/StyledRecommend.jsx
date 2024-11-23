@@ -181,331 +181,336 @@ export const Title = styled.div`
   }
 `;
 
-export const Main = styled.div`
+export const Det = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  //   justify-content: center;
+`;
+
+export const Searchbar = styled.div`
+  margin-top: 40px;
+  width: 650px;
+  height: 76px;
+  flex-shrink: 0;
+  border-radius: 197px;
+  background: #fafafa;
+  display: flex;
+  flex=direction: row;
+  justify-content: space-between; /* 양 끝 정렬 */
+  align-items: center;
+
+  #search {
+    flex: 1; /* 입력 박스가 가로로 최대 공간 차지 */
+    border: none; /* 테두리 제거 */
+    background: none; /* 배경 제거 */
+    outline: none; /* 포커스 시 외곽선 제거 */
+    // color: #cacaca;
+    font-family: NanumGothic;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.805px;
+    margin-left: 48px;
+
+    /* placeholder 스타일 */
+    &::placeholder {
+      color: #cacaca;
+    }
+  }
+
+  #cancel {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    margin-right: 20px;
+  }
+
+  #go {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    margin-right: 45px;
+  }
+`;
+
+export const Category = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
   margin-top: 40px;
   width: 100%;
   justify-content: center;
   align-items: center;
-  height: 425px;
+
+  div {
+    color: #797979;
+    font-family: NanumGothic;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.875px;
+  }
 `;
 
-export const Img = styled.div`
-  height: 204px;
-  border-radius: 7.84px 7.84px 0 0;
-  background: #d9d9d9;
-  width: 600px;
+export const Hr = styled.div`
+  width: 720px;
+  height: 2px;
+  background: #f3f3f3;
+  margin-top: 28px;
+`;
+
+export const Detca = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+`;
+
+export const Region = styled.div`
+  width: 129px;
+  height: 76px;
+  flex-shrink: 0;
+  border-radius: 197px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+
+  div {
+    color: #797979;
+    text-align: center;
+    font-family: NanumGothic;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.805px;
+  }
+
+  img {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+  }
+`;
+
+export const Div = styled.div`
+  width: 129px;
+  height: 76px;
+  flex-shrink: 0;
+  border-radius: 197px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+
+  div {
+    color: #797979;
+    text-align: center;
+    font-family: NanumGothic;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.805px;
+  }
+
+  img {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+  }
+`;
+
+export const Age = styled.div`
+  width: 151px;
+  height: 76px;
+  flex-shrink: 0;
+  border-radius: 197px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+
+  div {
+    color: #797979;
+    text-align: center;
+    font-family: NanumGothic;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.805px;
+  }
+
+  img {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+  }
+`;
+
+export const Op = styled.div`
+  width: 178px;
+  height: 76px;
+  flex-shrink: 0;
+  border-radius: 197px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+
+  div {
+    color: #797979;
+    text-align: center;
+    font-family: NanumGothic;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.805px;
+  }
+
+  img {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+  }
+`;
+
+export const List = styled.div`
+  margin-top: 73px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+`;
+
+export const Let = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+
+  #category {
+    margin-left: 52px;
+    color: #797979;
+    font-family: NanumGothic;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -1.225px;
+  }
+
+  #figure {
+    color: #d9d9d9;
+    font-family: NanumGothic;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.7px;
+    margin-left: 15px;
+
+    align-self: center; /* 특정 요소에 대해 alignment 재조정 */
+    margin-top: auto; /* 필요 시 추가적인 여백 조정 */
+  }
+
+  #order {
+    color: #797979;
+    font-family: NanumGothic;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.7px;
+    margin-left: auto;
+  }
+
+  img {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    margin-right: 60px;
+  }
+`;
+
+export const Comp = styled.div`
+  width: 617px;
+  height: 261px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
 `;
 
 export const Detail = styled.div`
-width: 600px;
-height: 220px;
-display: flex
-flex-direction: column;
-background: #fff;
-border: 1px solid #e6e6e6;
-border-radius: 0 0 7.84px 7.84px;
-gap: 20px;
-justify-content: center;
-align-items: center;
-`;
-
-export const Keyword = styled.div`
   display: flex;
-  flex-direction: row;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  margin-top: 22px;
-`;
-
-export const WordBox = styled.div`
-  width: 167.65px;
-  height: 39.055px;
-  flex-shrink: 0;
-  border-radius: 9.63px;
-  border: 1px solid #e6e6e6;
-  background: #f8f8f8;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-`;
-
-export const Inf = styled.div`
-  width: 100%;
-  margin-top: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 0 48px;
+  flex-direction: column;
+  gap: 13px;
+  justify-content: left;
+  align-items: left;
 `;
 
 export const Place = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 18px;
-  align-items: flex-start;
-`;
-
-export const Name = styled.div`
-  display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 6.5px;
+  align-items: baseline;
 
   #name {
     color: #272727;
     font-family: NanumGothic;
-    font-size: 27.448px;
+    font-size: 25px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    letter-spacing: -0.961px;
+    letter-spacing: -0.875px;
   }
 
-  #categoryid {
+  #category {
     color: #bfbfbf;
     font-family: NanumGothic;
-    font-size: 15.685px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    letter-spacing: -0.549px;
-
-    align-self: center; /* 특정 요소에 대해 alignment 재조정 */
-    margin-top: auto; /* 필요 시 추가적인 여백 조정 */
+    letter-spacing: -0.49px;
   }
 `;
 
 export const Loc = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
+  gap: 10px;
 
   img {
-    width: 25.879px;
-    height: 25.879px;
+    width: 23.585px;
+    height: 23.585px;
     flex-shrink: 0;
   }
 
   div {
     color: #a5a5a5;
-    font-family: NanumGothic;
-    font-size: 17.253px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.604px;
-  }
-`;
-
-export const Tel = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
-
-  img {
-    width: 25.879px;
-    height: 25.879px;
-    flex-shrink: 0;
-  }
-
-  div {
-    color: #a5a5a5;
-    font-family: NanumGothic;
-    font-size: 17.253px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.604px;
-  }
-`;
-
-export const Favorite = styled.div`
-  margin-left: auto;
-  width: 31.369px;
-  height: 31.369px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: red;
-`;
-
-export const Photo = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin-top: 82px;
-  width: 100%;
-`;
-
-export const PhotoRev = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-left: 60px;
-  gap: 10px;
-
-  #title {
-    color: #797979;
-    font-family: NanumGothic;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.875px;
-  }
-
-  #figure {
-    color: #d9d9d9;
-    font-family: NanumGothic;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.525px;
-
-    align-self: center; /* 특정 요소에 대해 alignment 재조정 */
-    margin-top: auto; /* 필요 시 추가적인 여백 조정 */
-  }
-
-  img {
-    margin-left: auto;
-    margin-right: 60px;
-    width: 35px;
-    height: 35px;
-    flex-shrink: 0;
-  }
-`;
-
-export const PhotoList = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: center;
-  margin-left: 60px;
-
-  /* 수평 스크롤 활성화 */
-  overflow-x: auto;
-  overflow-y: hidden; /* 수직 스크롤 방지 */
-  -webkit-overflow-scrolling: touch; /* 부드러운 스크롤 */
-  scroll-snap-type: x mandatory; /* 스냅 스크롤 적용 */
-
-  /* 스크롤바 숨기기 */
-  scrollbar-width: none; /* Firefox용 */
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari용 */
-  }
-`;
-
-export const Image = styled.div`
-  width: 250px;
-  height: 200px;
-  flex-shrink: 0;
-  border-radius: 10px;
-
-  /* 스냅 정렬 */
-  scroll-snap-align: start; /* 스크롤 시 시작 지점에 맞춤 */
-
-  img {
-    width: 250px;
-    height: 200px;
-    flex-shrink: 0;
-    border-radius: 10px;
-  }
-`;
-
-export const Line = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 82px;
-  gap: 25px;
-  width: 100%;
-`;
-
-export const LineRev = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  margin-left: 60px;
-
-  #title {
-    color: #797979;
-    font-family: NanumGothic;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.875px;
-  }
-
-  #figure {
-    color: #d9d9d9;
-    font-family: NanumGothic;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.525px;
-
-    align-self: center; /* 특정 요소에 대해 alignment 재조정 */
-    margin-top: auto; /* 필요 시 추가적인 여백 조정 */
-  }
-
-  img {
-    margin-right: 60px;
-    margin-left: auto;
-    width: 35px;
-    height: 35px;
-    flex-shrink: 0;
-  }
-`;
-
-export const ReviewList = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  margin-left: 60px;
-
-  /* 수평 스크롤 활성화 */
-  overflow-x: auto;
-  overflow-y: hidden; /* 수직 스크롤 방지 */
-  -webkit-overflow-scrolling: touch; /* 부드러운 스크롤 */
-  scroll-snap-type: x mandatory; /* 스냅 스크롤 적용 */
-
-  /* 스크롤바 숨기기 */
-  scrollbar-width: none; /* Firefox용 */
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari용 */
-  }
-`;
-
-export const Reviews = styled.div`
-  width: 364px;
-  height: 125px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  border: 1px solid #e6e6e6;
-  background: #fff;
-  align-items: flex-start;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  /* 스냅 정렬 */
-  scroll-snap-align: start; /* 스크롤 시 시작 지점에 맞춤 */
-
-  div {
-    margin-left: 32px;
-  }
-
-  #nick {
-    color: #797979;
     font-family: NanumGothic;
     font-size: 16px;
     font-style: normal;
@@ -513,14 +518,64 @@ export const Reviews = styled.div`
     line-height: normal;
     letter-spacing: -0.56px;
   }
+`;
 
-  #content {
-    color: #d9d9d9;
+export const Tel = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  img {
+    width: 23.585px;
+    height: 23.585px;
+    flex-shrink: 0;
+  }
+
+  div {
+    color: #a5a5a5;
     font-family: NanumGothic;
-    font-size: 15px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
-    line-height: 149.965%; /* 22.495px */
-    letter-spacing: -0.525px;
+    line-height: normal;
+    letter-spacing: -0.56px;
+  }
+`;
+
+export const Check = styled.div`
+  margin-top: 13px;
+  width: 193.302px;
+  height: 48.507px;
+  flex-shrink: 0;
+  background: #f8f8f8;
+  border: 1px solid #e6e6e6;
+  border-radius: 7.24px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  div {
+    color: #a5a5a5;
+    font-family: NanumGothic;
+    font-size: 16.652px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.583px;
+  }
+`;
+
+export const Img = styled.div`
+  width: 250px;
+  height: 200px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #d9d9d9;
+
+  img {
+    width: 250px;
+    height: 200px;
+    flex-shrink: 0;
+    border-radius: 10px;
   }
 `;

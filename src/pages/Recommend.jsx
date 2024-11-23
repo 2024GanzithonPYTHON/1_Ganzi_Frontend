@@ -51,47 +51,25 @@ const Recommend = () => {
     }
   };
 
-  const [categories, setCategories] = useState([]); // 카테고리 데이터를 저장할 상태
-  const [error, setError] = useState(null); // 에러 상태 관리
-
-  const fetchCategories = async () => {
-    try {
-      const response = await axios.get("/category", {
-        withCredentials: true,
-      }); // API 엔드포인트 호출
-      if (response.status === 200 && response.data?.data) {
-        console.log("불러온 데이터:", response.data.data); // 데이터를 콘솔에 출력
-        setCategories(response.data.data); // 데이터 상태 업데이트
-      }
-    } catch (err) {
-      console.error("Failed to fetch categories:", err);
-      setError("카테고리를 불러오는 중 오류가 발생했습니다.");
-    }
-  };
-
-  // 컴포넌트가 마운트될 때 API 호출
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+  const [places, setPlaces] = useState([]); // 장소 데이터 상태
+  const [error, setError] = useState(null);
 
   const fetchPlaces = async () => {
     try {
-      // 로컬스토리지에서 토큰 가져오기
       const authToken = localStorage.getItem("authToken");
 
-      // API 요청
       const response = await axios.get(
-        "/place?categoryId=2&provinceId=1&cityId=2", // 필요한 파라미터 값으로 대체
+        "/place?categoryId=2&provinceId=1&cityId=2",
         {
           headers: {
-            Authorization: `Bearer ${authToken}`, // 토큰을 Authorization 헤더에 추가
+            Authorization: `Bearer ${authToken}`,
           },
         }
       );
 
-      if (response.status === 200 && response.data?.data) {
-        console.log("불러온 장소 데이터:", response.data.data);
-        setCategories(response.data.data); // 장소 데이터를 상태로 업데이트
+      if (response.status === 200 && response.data?.data?.places) {
+        console.log("불러온 장소 데이터:", response.data.data.places);
+        setPlaces(response.data.data.places); // 장소 데이터 상태 업데이트
       }
     } catch (err) {
       console.error("Failed to fetch places:", err);
@@ -100,7 +78,7 @@ const Recommend = () => {
   };
 
   useEffect(() => {
-    fetchPlaces(); // 컴포넌트가 마운트될 때 호출
+    fetchPlaces();
   }, []);
 
   const [profileImage, setProfileImage] = useState(""); // 프로필 이미지 상태 저장
@@ -191,6 +169,13 @@ const Recommend = () => {
           />
           <div id="myname">마이페이지</div>
         </R.My>
+        <R.Set>
+          <img
+            id="setting"
+            src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
+            alt="설정"
+          />
+        </R.Set>
       </R.Nav>
       <R.Container>
         <R.Title>
@@ -270,38 +255,46 @@ const Recommend = () => {
               alt="더보기"
             />
           </R.Let>
-          {categories.map((place) => (
-            <R.Comp key={place.id}>
-              <R.Detail>
-                <R.Place>
-                  <div id="name">{place.name}</div>
-                  <div id="category"></div> {/* 카테고리는 비워둠 */}
-                </R.Place>
-                <R.Loc>
-                  <img
-                    src={`${process.env.PUBLIC_URL}/images/Location.svg`}
-                    alt="장소"
-                  />
-                  <div>{place.address}</div> {/* address 값 표시 */}
-                </R.Loc>
-                <R.Tel>
-                  <img
-                    src={`${process.env.PUBLIC_URL}/images/Telephone.svg`}
-                    alt="전화"
-                  />
-                  <div>{place.contact}</div> {/* contact 값 표시 */}
-                </R.Tel>
-                <R.Check
-                  onClick={() => {
-                    navigate("/recommend/review", { state: place });
-                  }}
-                >
-                  <div>리뷰 확인하기</div>
-                </R.Check>
-              </R.Detail>
-              <R.Img></R.Img>
-            </R.Comp>
-          ))}
+          {places.length > 0 ? (
+            places.map((place) => (
+              <R.Comp key={place.id}>
+                <R.Detail>
+                  <R.Place>
+                    <div id="name">{place.name}</div>
+                    <div id="category">{place.category}</div>
+                  </R.Place>
+                  <R.Loc>
+                    <img
+                      src={`${process.env.PUBLIC_URL}/images/Location.svg`}
+                      alt="장소"
+                    />
+                    <div>{place.address}</div>
+                  </R.Loc>
+                  <R.Tel>
+                    <img
+                      src={`${process.env.PUBLIC_URL}/images/Telephone.svg`}
+                      alt="전화"
+                    />
+                    <div>{place.contact}</div>
+                  </R.Tel>
+                  <R.Check
+                    onClick={() => {
+                      navigate("/recommend/review", { state: place });
+                    }}
+                  >
+                    <div>리뷰 확인하기</div>
+                  </R.Check>
+                </R.Detail>
+                <R.Img>
+                  <img src={place.imageUrl} alt={`${place.name}`} />
+                </R.Img>
+              </R.Comp>
+            ))
+          ) : error ? (
+            <div>{error}</div>
+          ) : (
+            <div>장소 데이터를 불러오는 중입니다.</div>
+          )}
         </R.List>
       </R.Container>
     </R.Box>
