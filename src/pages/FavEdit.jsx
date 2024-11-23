@@ -194,13 +194,6 @@ const FavEdit = () => {
           />
           <div id="myname">마이페이지</div>
         </F.My>
-        <F.Set>
-          <img
-            id="setting"
-            src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
-            alt="설정"
-          />
-        </F.Set>
       </F.Nav>
       <F.Container>
         <F.Title>
@@ -254,8 +247,9 @@ const FavEdit = () => {
               )}
             </F.Folder>
           ))}
-          <F.Hr></F.Hr>
-          {/* <F.New onClick={openModal}>
+          <F.Bottom>
+            <F.Hr></F.Hr>
+            {/* <F.New onClick={openModal}>
             <img
               id="newfolder"
               src={`${process.env.PUBLIC_URL}/images/NewFolder.svg`}
@@ -263,9 +257,10 @@ const FavEdit = () => {
             />
             <div id="new">새 폴더 만들기</div>
           </F.New> */}
-          <F.Edit onClick={gofav}>
-            <div id="detail">완료하기</div>
-          </F.Edit>
+            <F.Edit onClick={gofav}>
+              <div id="detail">완료하기</div>
+            </F.Edit>
+          </F.Bottom>
         </F.List>
       </F.Container>
     </F.Box>

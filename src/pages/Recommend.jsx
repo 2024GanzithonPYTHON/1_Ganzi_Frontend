@@ -191,13 +191,6 @@ const Recommend = () => {
           />
           <div id="myname">마이페이지</div>
         </R.My>
-        <R.Set>
-          <img
-            id="setting"
-            src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
-            alt="설정"
-          />
-        </R.Set>
       </R.Nav>
       <R.Container>
         <R.Title>

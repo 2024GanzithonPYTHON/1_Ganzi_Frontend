@@ -30,10 +30,26 @@ const Search = () => {
   const [recentSearches, setRecentSearches] = useState([]); // 검색어 목록 상태
   const [searchInput, setSearchInput] = useState(""); // 현재 검색어 입력 상태
 
-  const handleAddSearch = () => {
+  const handleAddSearch = async () => {
     if (searchInput.trim()) {
-      setRecentSearches((prev) => [searchInput, ...prev]); // 검색어 추가
-      setSearchInput(""); // 입력 필드 초기화
+      setRecentSearches((prev) => [searchInput, ...prev]); // 검색어를 최근 목록에 추가
+
+      // 카카오 지도 API로 장소 검색
+      const kakaoKey = "YOUR_KAKAO_API_KEY"; // 카카오 API 키 (환경 변수로 설정 권장)
+      const url = `https://dapi.kakao.com/v2/local/search/keyword.json?query=${encodeURIComponent(
+        searchInput
+      )}`;
+
+      try {
+        const response = await axios.get(url, {
+          headers: { Authorization: `KakaoAK ${kakaoKey}` },
+        });
+        setSearchResults(response.data.documents); // 검색 결과 저장
+      } catch (error) {
+        console.error("Failed to search places:", error);
+      }
+
+      setSearchInput(""); // 검색 입력값 초기화
     }
   };
 
@@ -75,24 +91,6 @@ const Search = () => {
 
   const [searchResults, setSearchResults] = useState([]);
   const [selectedPlace, setSelectedPlace] = useState(null);
-
-  // 카카오 지도 API로 장소 검색
-  const searchPlaces = async () => {
-    if (!searchInput.trim()) return;
-
-    const kakaoKey = "YOUR_KAKAO_API_KEY"; // 카카오 API 키
-    const url = `https://dapi.kakao.com/v2/local/search/keyword.json?query=${encodeURIComponent(
-      searchInput
-    )}`;
-    try {
-      const response = await axios.get(url, {
-        headers: { Authorization: `KakaoAK ${kakaoKey}` },
-      });
-      setSearchResults(response.data.documents); // 검색 결과 저장
-    } catch (error) {
-      console.error("Failed to search places:", error);
-    }
-  };
 
   // 장소 선택 및 백엔드 API 호출
   const handleSelectPlace = async (place) => {
@@ -179,13 +177,6 @@ const Search = () => {
           />
           <div id="myname">마이페이지</div>
         </S.My>
-        <S.Set>
-          <img
-            id="setting"
-            src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
-            alt="설정"
-          />
-        </S.Set>
       </S.Nav>
       <S.Container>
         <S.Title>

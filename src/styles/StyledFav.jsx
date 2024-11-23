@@ -241,6 +241,20 @@ export const Folder = styled.div`
   }
 `;
 
+export const Bottom = styled.div`
+  position: fixed;
+  bottom: 0; /* 화면의 바닥에 고정 */
+  left: 52.5%; /* 가운데 정렬 */
+  transform: translateX(-50%); /* 가운데 정렬 보정 */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10; /* 다른 요소 위에 표시되도록 z-index 설정 */
+  gap: 25px;
+  justify-content: center;
+`;
+
 export const Hr = styled.div`
   margin-top: auto;
   width: 600.003px;

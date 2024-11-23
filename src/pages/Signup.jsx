@@ -11,22 +11,6 @@ const Signup = () => {
     navigate(-1);
   };
 
-  const gosearch = () => {
-    navigate("/search");
-  };
-
-  const gomy = () => {
-    navigate("/my");
-  };
-
-  const gohome = () => {
-    navigate("/");
-  };
-
-  const gorec = () => {
-    navigate("/recommend");
-  };
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -246,13 +230,6 @@ const Signup = () => {
           />
           <div id="myname">마이페이지</div>
         </S.My>
-        <S.Set>
-          <img
-            id="setting"
-            src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
-            alt="설정"
-          />
-        </S.Set>
       </S.Nav>
       <S.Container>
         <S.Title>

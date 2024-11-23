@@ -7,8 +7,14 @@ import Main from "./pages/Main";
 import FavEdit from "./pages/FavEdit";
 import RevCheck from "./pages/RevCheck";
 import FavoriteModal from "./pages/FavoriteModal";
-import RecomModal from "./pages/RecomModal";
-import ReviewModal from "./pages/ReviewModal";
+// import RecomModal from "./pages/RecomModal";
+// import ReviewModal from "./pages/ReviewModal";
+import Search from "./pages/Search";
+import Favorite from "./pages/Favorite";
+import My from "./pages/My";
+import Recommend from "./pages/Recommend";
+import Reward from "./pages/Reward";
+import Complete from "./pages/Complete";
 
 function App() {
   return (
@@ -23,11 +29,12 @@ function App() {
         <Route path="/recommend" element={<Recommend />} />
         <Route path="/main" element={<Main />} />
         <Route path="/favorite/edit" element={<FavEdit />} />
-        <Route path="RecomModal" element={<RecomModal />} />
         <Route path="/recommend/review" element={<RevCheck />} />{" "}
         <Route path="/FavoriteModal" element={<FavoriteModal />} />
-        <Route path="RecomModal" element={<RecomModal />} />
-        <Route path="ReviewModal" element={<ReviewModal />} />
+        <Route path="/reward" element={<Reward />} />
+        <Route path="/complete" element={<Complete />} />
+        {/* <Route path="RecomModal" element={<RecomModal />} /> */}
+        {/* <Route path="ReviewModal" element={<ReviewModal />} /> */}
       </Routes>
     </BrowserRouter>
   );

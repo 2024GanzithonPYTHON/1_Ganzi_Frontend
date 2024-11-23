@@ -33,17 +33,6 @@ const My = () => {
     navigate("/recommend");
   };
 
-  const goToSettings = () => {
-    // iOS: 설정 앱으로 이동
-    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      window.location.href = "app-settings:";
-    } else {
-      // Android: 대체 URL 또는 도움말 페이지로 이동
-      window.location.href =
-        "https://support.google.com/android/answer/6083927";
-    }
-  };
-
   useEffect(() => {
     // 토큰 유무 확인 및 로그인 상태 설정
     const token = localStorage.getItem("authToken");
@@ -122,14 +111,14 @@ const My = () => {
         localStorage.removeItem("authToken"); // 토큰 제거
         setIsLoggedIn(false); // 상태 변경
         alert("로그아웃 성공!");
-        navigate("/login"); // 로그인 페이지로 이동
+        navigate("/"); // 로그인 페이지로 이동
       } catch (error) {
         console.error("로그아웃 실패:", error);
         alert("로그아웃에 실패했습니다. 다시 시도해주세요.");
       }
     } else {
       // 로그인 페이지로 이동
-      navigate("/login");
+      navigate("/");
     }
   };
 
@@ -187,14 +176,6 @@ const My = () => {
           />
           <div id="myname">마이페이지</div>
         </M.My>
-        <M.Set>
-          <img
-            id="setting"
-            src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
-            alt="설정"
-            onClick={goToSettings}
-          />
-        </M.Set>
       </M.Nav>
       <M.Container>
         <M.Title>
@@ -205,12 +186,6 @@ const My = () => {
             onClick={goback}
           />
           <div id="name">마이페이지</div>
-          <img
-            id="setting"
-            src={`${process.env.PUBLIC_URL}images/Setting-none.svg`}
-            alt="설정"
-            onClick={goToSettings}
-          />
         </M.Title>
         <M.Infbox>
           <M.Img>

@@ -191,13 +191,6 @@ const Main = () => {
           />
           <div id="myname">마이페이지</div>
         </M.My>
-        <M.Set>
-          <img
-            id="setting"
-            src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
-            alt="설정"
-          />
-        </M.Set>
       </M.Nav>
 
       <M.ContentArea>

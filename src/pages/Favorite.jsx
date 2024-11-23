@@ -167,13 +167,6 @@ const Favorite = () => {
           />
           <div id="myname">마이페이지</div>
         </F.My>
-        <F.Set>
-          <img
-            id="setting"
-            src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
-            alt="설정"
-          />
-        </F.Set>
       </F.Nav>
       <F.Container>
         <F.Title>
@@ -200,18 +193,20 @@ const Favorite = () => {
               <div id="folder">{folder.folderName}</div> {/* 폴더 이름 표시 */}
             </F.Folder>
           ))}
-          <F.Hr></F.Hr>
-          <F.New onClick={openModal}>
-            <img
-              id="newfolder"
-              src={`${process.env.PUBLIC_URL}/images/NewFolder.svg`}
-              alt="새로운"
-            />
-            <div id="new">새 폴더 만들기</div>
-          </F.New>
-          <F.Edit onClick={goedit}>
-            <div id="detail">폴더 수정/삭제하기</div>
-          </F.Edit>
+          <F.Bottom>
+            <F.Hr></F.Hr>
+            <F.New onClick={openModal}>
+              <img
+                id="newfolder"
+                src={`${process.env.PUBLIC_URL}/images/NewFolder.svg`}
+                alt="새로운"
+              />
+              <div id="new">새 폴더 만들기</div>
+            </F.New>
+            <F.Edit onClick={goedit}>
+              <div id="detail">폴더 수정/삭제하기</div>
+            </F.Edit>
+          </F.Bottom>
         </F.List>
       </F.Container>
     </F.Box>

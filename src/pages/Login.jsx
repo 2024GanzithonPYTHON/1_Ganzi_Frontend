@@ -51,7 +51,7 @@ const Login = () => {
         // 토큰 저장하기
         localStorage.setItem("authToken", token);
 
-        navigate("/");
+        navigate("/main");
       }
     } catch (error) {
       console.error("로그인 실패", error);
@@ -147,13 +147,6 @@ const Login = () => {
           />
           <div id="myname">마이페이지</div>
         </L.My>
-        <L.Set>
-          <img
-            id="setting"
-            src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
-            alt="설정"
-          />
-        </L.Set>
       </L.Nav>
       <L.Container>
         <L.Logo>
