@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import * as M from "../styles/StyledMain";
-import Modal from "./MainModal";
+import MainModal from "./MainModal";
 import axios from "axios";
-import RecomModal from './RecomModal';
+import RecomModal from "./RecomModal";
 
 const Main = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -215,13 +215,14 @@ const Main = () => {
         </M.MapArea>
       </M.ContentArea>
 
-      {modalVisible && !showRecomModal && ( // RecomModal이 아닌 경우에만 MainModal을 보여줌
-        <MainModal 
-          content={modalContent} 
-          onClose={() => setModalVisible(false)} 
-          setShowRecomModal={setShowRecomModal} // RecomModal 띄우기 위한 함수 전달
-        />
-      )}
+      {modalVisible &&
+        !showRecomModal && ( // RecomModal이 아닌 경우에만 MainModal을 보여줌
+          <MainModal
+            content={modalContent}
+            onClose={() => setModalVisible(false)}
+            setShowRecomModal={setShowRecomModal} // RecomModal 띄우기 위한 함수 전달
+          />
+        )}
 
       {showRecomModal && (
         <RecomModal onClose={() => setShowRecomModal(false)} />
