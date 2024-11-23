@@ -3,14 +3,12 @@ import React from "react";
 import Login from "./pages/Login";
 import GlobalStyle from "./pages/GlobalStyles";
 import Signup from "./pages/Signup";
-import Search from "./pages/Search";
-import Favorite from "./pages/Favorite";
-import My from "./pages/My";
-import Recommend from "./pages/Recommend";
 import Main from "./pages/Main";
 import FavEdit from "./pages/FavEdit";
 import RevCheck from "./pages/RevCheck";
+import FavoriteModal from "./pages/FavoriteModal";
 import RecomModal from "./pages/RecomModal";
+import ReviewModal from "./pages/ReviewModal";
 
 function App() {
   return (
@@ -27,6 +25,9 @@ function App() {
         <Route path="/favorite/edit" element={<FavEdit />} />
         <Route path="RecomModal" element={<RecomModal />} />
         <Route path="/recommend/review" element={<RevCheck />} />{" "}
+        <Route path="/FavoriteModal" element={<FavoriteModal />} />
+        <Route path="RecomModal" element={<RecomModal />} />
+        <Route path="ReviewModal" element={<ReviewModal />} />
       </Routes>
     </BrowserRouter>
   );
