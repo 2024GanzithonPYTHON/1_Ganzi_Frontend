@@ -10,7 +10,6 @@ import FavoriteModal from "./pages/FavoriteModal";
 import Search from "./pages/Search";
 import Favorite from "./pages/Favorite";
 import My from "./pages/My";
-import Recommend from "./pages/Recommend";
 import Reward from "./pages/Reward";
 import Complete from "./pages/Complete";
 import MainModal from "./pages/MainModal";
