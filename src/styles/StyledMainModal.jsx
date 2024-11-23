@@ -6,7 +6,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* 어두운 배경 */
+  background: rgba(0, 0, 0, 0.7);
   z-index: 1000;
 `;
 
@@ -25,16 +25,15 @@ export const ModalContainer = styled.div`
   max-height: 80%; /* 최대 높이 설정 */
   overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-  justify-content: center;
   transition: all 0.3s ease; /* 부드러운 전환 효과 */
 `;
 
 export const TagContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
-`
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+  gap: 30px; /* 태그 사이 간격 설정 */
+  margin-bottom: 30px; /* 태그와 다음 요소 간격 설정 */
+`;
 
 export const Tag = styled.span`
   background-color: #f0f0f0;
@@ -43,26 +42,25 @@ export const Tag = styled.span`
   font-size: 14px;
 `;
 
+export const Title = styled.h1`
+  font-size: 24px;
+  margin: 30px 0; /* 위아래 간격을 30px로 설정 */
+`;
+
+export const Description = styled.p`
+  margin: 30px 0 50px; /* 위쪽은 30px, 아래쪽은 50px으로 설정 */
+`;
+
 export const Button = styled.button`
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
-  fill: #F8F8F8;
-  stroke-width: 1px;
-  stroke: #E6E6E6;
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+  color: #A5A5A5; /* 글자 색깔 변경 */
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: color 0.3s; /* 색상 변화 부드럽게 전환 */
 
   &:hover {
-    background-color: #FF3434;
+    color: #FF3434; /* 호버 시 색상 변경 (필요시 조정 가능) */
   }
-`;
-
-export const Title = styled.h1`
-    font-size: 24px;
-    margin: 20px 0;
-`;
-
-export const Description = styled.p`
-    margin: 10px 0 30px;
 `;

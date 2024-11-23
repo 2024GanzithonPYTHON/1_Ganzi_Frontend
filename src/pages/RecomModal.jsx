@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as R from "../styles/StyledRecomModal";
-// import ReviewModal from "./ReviewModal"; // ReviewModal을 import합니다.
+import ReviewModal from './ReviewModal'; // ReviewModal을 import합니다.
 
 const ReviewSelectionModal = ({ onClose, onReviewSelect }) => {
   return (
@@ -16,9 +16,9 @@ const ReviewSelectionModal = ({ onClose, onReviewSelect }) => {
         </R.CloseButton>
         <R.ModalTitle>원하는 방식을 선택해 주세요</R.ModalTitle>
 
-        <R.Button
-          primary
-          style={{ width: "600px", height: "67px", flexShrink: 0 }}
+        <R.Button 
+          primary 
+          style={{ width: '600px', height: '67px', flexShrink: 0 }} 
           onClick={onReviewSelect} // 리뷰 불러오기 클릭 시 호출
         >
           내가 작성한 리뷰 불러오기
@@ -149,27 +149,17 @@ const RecomModal = ({ onClose }) => {
 
   return (
     <>
-      {/* {showReviewModal ? (
-        <ReviewModal
+      {showReviewModal ? (
+        <ReviewModal 
           reviews={[
-            {
-              name: "이디야커피",
-              category: "카페",
-              address: "경기 성남시 중원구 산성대로 460",
-              phone: "031-749-9366",
-              message: "4건의 리뷰를 작성했어요",
-              highlighted: true,
-            },
+            { name: '이디야커피', category: '카페', address: '경기 성남시 중원구 산성대로 460', phone: '031-749-9366', message: '4건의 리뷰를 작성했어요', highlighted: true },
             // 추가 리뷰 데이터...
           ]}
-          onClose={() => setShowReviewModal(false)}
-          onNext={() => alert("다음 단계로 넘어가기!")} // 다음 단계로 넘어가는 로직
+          onClose={() => setShowReviewModal(false)} 
+          onNext={() => alert('다음 단계로 넘어가기!')} // 다음 단계로 넘어가는 로직
         />
       ) : showReviewSelection ? (
-        <ReviewSelectionModal
-          onClose={() => setShowReviewSelection(false)}
-          onReviewSelect={handleReviewSelect}
-        />
+        <ReviewSelectionModal onClose={() => setShowReviewSelection(false)} onReviewSelect={handleReviewSelect} />
       ) : showCategoryInput ? (
         <CategoryInputModal onClose={() => setShowCategoryInput(false)} />
       ) : (
@@ -194,7 +184,7 @@ const RecomModal = ({ onClose }) => {
             </R.Button>
           </R.ModalContainer>
         </R.Overlay>
-      )} */}
+      )}
     </>
   );
 };

@@ -1,11 +1,10 @@
 import React from 'react';
-import { Overlay, ModalContainer, Tag, Button, Title, Description, TagContainer } from '../styles/StyledMainModal'; 
-import RecomModal from './RecomModal';
+import { Overlay, ModalContainer, TagContainer, Tag, Button, Title, Description } from '../styles/StyledMainModal';
 
-const MainModal = ({ content, onClose, setShowRecomModal }) => { 
+const MainModal = ({ content, onClose, setShowRecomModal }) => {
   const handleRecommendationClick = () => {
-    onClose();
-    setShowRecomModal(true);
+    onClose(); // 메인 모달 닫기
+    setShowRecomModal(true); // RecomModal 열기
   };
 
   return (
