@@ -3,6 +3,10 @@ import React from "react";
 import Login from "./pages/Login";
 import GlobalStyle from "./pages/GlobalStyles";
 import Signup from "./pages/Signup";
+import Main from "./pages/Main";
+import FavoriteModal from "./pages/FavoriteModal";
+import RecomModal from "./pages/RecomModal";
+import ReviewModal from "./pages/ReviewModal";
 
 function App() {
   return (
@@ -11,6 +15,10 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/Main" element={<Main />} />
+        <Route path="/FavoriteModal" element={<FavoriteModal />} />
+        <Route path="RecomModal" element={<RecomModal />} />
+        <Route path="ReviewModal" element={<ReviewModal />} />
       </Routes>
     </BrowserRouter>
   );
