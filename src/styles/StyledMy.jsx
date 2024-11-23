@@ -29,6 +29,13 @@ export const Profile = styled.div`
   flex-shrink: 0;
   border-radius: 50%; /* 둥근 모서리를 50%로 설정해 원 모양 생성 */
   background: gray;
+
+  img {
+    width: 76.166px;
+    height: 76.166px;
+    flex-shrink: 0;
+    border-radius: 50%; /* 둥근 모서리를 50%로 설정해 원 모양 생성 */
+  }
 `;
 
 export const Home = styled.div`
@@ -165,11 +172,13 @@ export const Title = styled.div`
   //   justify-content: center;
   //   text-align: center;
   align-items: center;
+
   #back {
     width: 59px;
     height: 59px;
     flex-shrink: 0;
   }
+
   #name {
     color: #272727;
     font-family: NanumGothic;
@@ -178,6 +187,14 @@ export const Title = styled.div`
     font-weight: 700;
     line-height: normal;
     letter-spacing: -1.225px;
+  }
+
+  #setting {
+    margin-left: auto;
+    width: 35.796px;
+    height: 36.8px;
+    flex-shrink: 0;
+    margin-right: 73.2px;
   }
 `;
 

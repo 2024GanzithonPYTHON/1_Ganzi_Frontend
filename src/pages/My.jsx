@@ -11,13 +11,14 @@ const My = () => {
   const [nickname, setNickname] = useState(""); // 닉네임
   const [ageGroup, setAgeGroup] = useState(""); // 연령대
   const [region, setRegion] = useState(""); // 거주지
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 체크
 
   const goback = () => {
     navigate(-1);
   };
 
   const gohome = () => {
-    navigate("/");
+    navigate("/main");
   };
 
   const gosearch = () => {
@@ -33,6 +34,9 @@ const My = () => {
   };
 
   useEffect(() => {
+    // 토큰 유무 확인 및 로그인 상태 설정
+    const token = localStorage.getItem("authToken");
+    setIsLoggedIn(!!token); // 토큰이 있으면 true, 없으면 false
     // 서버와의 통신으로 데이터 가져오기
     const fetchProfileData = async () => {
       try {
@@ -88,37 +92,42 @@ const My = () => {
     };
 
     fetchProfileData(); // 프로필 데이터 로드 함수 호출
-  }, []);
+  }, [isLoggedIn]);
 
-  const handleLogout = async () => {
-    try {
-      // 로컬 스토리지에서 토큰 가져오기
-      const token = localStorage.getItem("authToken");
-      const response = await axios.post(
-        "https://go-farming.shop/users/logout",
-        {}, // 로그아웃 요청에 필요한 바디 (없다면 빈 객체)
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // 토큰 추가
-          },
-        }
-      );
-      console.log(response.data.message);
-      alert("로그아웃 성공!");
-
-      // 로컬 스토리지에서 토큰 제거
-      localStorage.removeItem("authToken");
-      window.location.href = "/login"; // 로그인 페이지로 이동
-    } catch (error) {
-      console.error("로그아웃 실패:", error);
-      alert("로그아웃에 실패했습니다. 다시 시도해주세요.");
+  const handleLogoutOrLogin = async () => {
+    if (isLoggedIn) {
+      // 로그아웃 로직
+      try {
+        const token = localStorage.getItem("authToken");
+        await axios.post(
+          "https://go-farming.shop/users/logout",
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        localStorage.removeItem("authToken"); // 토큰 제거
+        setIsLoggedIn(false); // 상태 변경
+        alert("로그아웃 성공!");
+        navigate("/"); // 로그인 페이지로 이동
+      } catch (error) {
+        console.error("로그아웃 실패:", error);
+        alert("로그아웃에 실패했습니다. 다시 시도해주세요.");
+      }
+    } else {
+      // 로그인 페이지로 이동
+      navigate("/");
     }
   };
 
   return (
     <M.Box>
       <M.Nav>
-        <M.Profile></M.Profile>
+        <M.Profile>
+          {profilePic ? <img src={profilePic} alt="프로필" /> : ""}
+        </M.Profile>
         <M.Home onClick={gohome}>
           <img
             id="home"
@@ -135,14 +144,14 @@ const My = () => {
           />
           <div id="searchname">검색하기</div>
         </M.Search>
-        <M.Review>
+        {/* <M.Review>
           <img
             id="review"
             src={`${process.env.PUBLIC_URL}/images/Review-none.svg`}
             alt="리뷰"
           />
           <div id="reviewname">리뷰 작성</div>
-        </M.Review>
+        </M.Review> */}
         <M.Recom onClick={gorec}>
           <img
             id="recom"
@@ -167,13 +176,6 @@ const My = () => {
           />
           <div id="myname">마이페이지</div>
         </M.My>
-        <M.Set>
-          <img
-            id="setting"
-            src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
-            alt="설정"
-          />
-        </M.Set>
       </M.Nav>
       <M.Container>
         <M.Title>
@@ -187,20 +189,22 @@ const My = () => {
         </M.Title>
         <M.Infbox>
           <M.Img>
-            {profilePic ? (
-              <img src={profilePic} alt="프로필" />
-            ) : (
-              "이미지 로딩 중..."
-            )}
+            {profilePic ? <img src={profilePic} alt="프로필" /> : ""}
           </M.Img>
-          <M.Name>{nickname}</M.Name>
+          <M.Name>
+            {nickname ? <div>{nickname}</div> : "로그인이 필요합니다."}
+          </M.Name>
           <M.Inf>
-            <M.Age>
-              <div>{ageGroup}대</div>
-            </M.Age>
-            <M.Live>
-              <div>{region}</div>
-            </M.Live>
+            {isLoggedIn && (
+              <>
+                <M.Age>
+                  <div>{ageGroup}대</div>
+                </M.Age>
+                <M.Live>
+                  <div>{region}</div>
+                </M.Live>
+              </>
+            )}
           </M.Inf>
           <M.Hr />
           <M.Manage>
@@ -209,8 +213,8 @@ const My = () => {
           <M.Edit>
             <div>회원정보 수정</div>
           </M.Edit>
-          <M.Logout onClick={handleLogout}>
-            <div>로그아웃</div>
+          <M.Logout onClick={handleLogoutOrLogin}>
+            <div>{isLoggedIn ? "로그아웃" : "로그인"}</div>
           </M.Logout>
           <M.Delete>
             <div>회원 탈퇴하기</div>

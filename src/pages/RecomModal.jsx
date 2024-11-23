@@ -14,51 +14,42 @@ const ReviewSelectionModal = ({ onClose, onReviewSelect }) => {
             id="close"
             src={`${process.env.PUBLIC_URL}/images/Close.svg`}
             alt="닫기"
-            style={{ width: '24px', height: '24px' }}
+            style={{ width: "24px", height: "24px" }}
           />
         </R.CloseButton>
         <R.ModalTitle>원하는 방식을 선택해 주세요</R.ModalTitle>
 
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <R.Button 
-            primary 
-            style={{ width: '600px', height: '67px', flexShrink: 0 }} 
-            onClick={onReviewSelect} // 리뷰 불러오기 클릭 시 호출
-          >
-            내가 작성한 리뷰 불러오기
-          </R.Button>
-          
-          <R.Button 
-            primary 
-            style={{ width: '600px', height: '67px', flexShrink: 0 }} 
-            onClick={() => {
-              navigate('/main'); // Main.jsx로 이동
-            }}
-          >
-            키워드로 검색하기
-          </R.Button>
-          
-          <R.Button 
-            primary 
-            style={{ width: '600px', height: '67px', flexShrink: 0 }} 
-            onClick={() => {
-              navigate('/main'); // Main.jsx로 이동
-            }}
-          >
-            지도에서 장소 클릭하기
-          </R.Button>
-          
-          <R.Button 
-            primary 
-            style={{ width: '600px', height: '67px', flexShrink: 0 }} 
-            onClick={() => {
-              alert('다음 단계로 넘어가기!');
-              onClose(); // 모달 닫기 (필요에 따라 추가)
-            }}
-          >
-            다음 단계로 넘어가기
-          </R.Button>
-        </div>
+        <R.Button 
+          primary 
+          style={{ width: '600px', height: '67px', flexShrink: 0 }} 
+          onClick={onReviewSelect} // 리뷰 불러오기 클릭 시 호출
+        >
+          내가 작성한 리뷰 불러오기
+        </R.Button>
+        
+        <R.Button 
+          primary 
+          style={{ width: '600px', height: '67px', flexShrink: 0 }} 
+          onClick={() => alert('키워드로 검색하기!')}
+        >
+          키워드로 검색하기
+        </R.Button>
+        
+        <R.Button 
+          primary 
+          style={{ width: '600px', height: '67px', flexShrink: 0 }} 
+          onClick={() => alert('지도에서 장소 클릭하기!')}
+        >
+          지도에서 장소 클릭하기
+        </R.Button>
+        
+        <R.Button 
+          primary 
+          style={{ width: '600px', height: '67px', flexShrink: 0 }} 
+          onClick={() => alert('다음 단계로 넘어가기!')}
+        >
+          다음 단계로 넘어가기
+        </R.Button>
       </R.ModalContainer>
     </R.Overlay>
   );
@@ -80,32 +71,30 @@ const CategoryInputModal = ({ onClose }) => {
             id="close"
             src={`${process.env.PUBLIC_URL}/images/Close.svg`}
             alt="닫기"
-            style={{ width: '24px', height: '24px' }}
+            style={{ width: "24px", height: "24px" }}
           />
         </R.CloseButton>
         <R.ModalTitle>카테고리와 지역을 입력해 주세요</R.ModalTitle>
 
-        <R.Dropbox>
-          <select style={{ width: '100%', height: '67px', marginBottom: '10px', backgroundColor: '#FAFAFA', border: '1px solid #E6E6E6' }}>
-            <option value="" disabled defaultValue>메인 카테고리 선택</option>
-            <option value="category1">카페</option>
-            <option value="category2">캠핑</option>
-          </select>
+        <select style={{ width: '600px', height: '67px', flexShrink: 0, marginBottom: '10px', backgroundColor: '#FAFAFA', border: '1px solid #E6E6E6' }}>
+          <option value="" disabled defaultValue>메인 카테고리 선택</option>
+          <option value="category1">카테고리 1</option>
+          <option value="category2">카테고리 2</option>
+        </select>
 
-          <select style={{ width: '100%', height: '67px', marginBottom: '10px', backgroundColor: '#FAFAFA', border: '1px solid #E6E6E6' }}>
-            <option value="" disabled defaultValue>세부 카테고리 선택</option>
-            <option value="subcategory1">연인</option>
-            <option value="subcategory2">가족과 가기 좋음</option>
-          </select>
+        <select style={{ width: '600px', height: '67px', flexShrink: 0, marginBottom: '10px', backgroundColor: '#FAFAFA', border: '1px solid #E6E6E6' }}>
+          <option value="" disabled defaultValue>세부 카테고리 선택</option>
+          <option value="subcategory1">세부 카테고리 1</option>
+          <option value="subcategory2">세부 카테고리 2</option>
+        </select>
 
-          <select style={{ width: '100%', height: '67px', marginBottom: '10px', backgroundColor: '#FAFAFA', border: '1px solid #E6E6E6' }}>
-            <option value="" disabled defaultValue>지역 선택</option>
-            <option value="region1">서울</option>
-            <option value="region2">판교</option>
-          </select>
-        </R.Dropbox>
+        <select style={{ width: '600px', height: '67px', flexShrink: 0, marginBottom: '10px', backgroundColor: '#FAFAFA', border: '1px solid #E6E6E6' }}>
+          <option value="" disabled defaultValue>지역 선택</option>
+          <option value="region1">지역 1</option>
+          <option value="region2">지역 2</option>
+        </select>
 
-        <R.Button primary style={{ width: '100%', height: '67px' }} onClick={handleRecommendationClick}>
+        <R.Button primary style={{ width: '600px', height: '67px', flexShrink: 0 }} onClick={() => alert('추천 받기!')}>
           추천 받을래요
         </R.Button>
       </R.ModalContainer>
@@ -154,7 +143,7 @@ const RecomModal = ({ onClose }) => {
                 id="close"
                 src={`${process.env.PUBLIC_URL}/images/Close.svg`}
                 alt="닫기"
-                style={{ width: '24px', height: '24px' }}
+                style={{ width: "24px", height: "24px" }}
               />
             </R.CloseButton>
             <R.ModalTitle>장소를</R.ModalTitle>

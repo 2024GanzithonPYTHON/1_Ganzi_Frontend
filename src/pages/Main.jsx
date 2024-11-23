@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import * as M from "../styles/StyledMain";
-import MainModal from './MainModal';
-import RecomModal from './RecomModal';
+import MainModal from "./MainModal";
+import axios from "axios";
+import RecomModal from "./RecomModal";
 
 const Main = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -103,10 +104,46 @@ const Main = () => {
 
   const closeModal = () => setModalVisible(false);
 
+  const [profileImage, setProfileImage] = useState(""); // 프로필 이미지 상태 저장
+  useEffect(() => {
+    // 프로필 이미지 가져오는 함수
+    const fetchProfileImage = async () => {
+      try {
+        const token = localStorage.getItem("authToken"); // 로컬스토리지에서 토큰 가져오기
+
+        const response = await axios.get("/users/profile/profile-picture", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Authorization 헤더에 토큰 추가
+          },
+        });
+
+        setProfileImage(response.data); // API에서 받은 이미지 URL 설정
+      } catch (error) {
+        console.error("Failed to fetch profile image:", error);
+      }
+    };
+
+    fetchProfileImage();
+  }, []);
+
   return (
     <M.Box>
       <M.Nav>
-        <M.Profile></M.Profile>
+        <M.Profile>
+          {profileImage ? (
+            <img
+              src={profileImage}
+              alt="프로필"
+              style={{
+                width: "76.166px",
+                height: "76.166px",
+                borderRadius: "50%",
+              }}
+            />
+          ) : (
+            ""
+          )}
+        </M.Profile>
         <M.Home>
           <img
             id="home"
@@ -123,14 +160,14 @@ const Main = () => {
           />
           <div id="searchname">검색하기</div>
         </M.Search>
-        <M.Review>
+        {/* <M.Review>
           <img
             id="review"
             src={`${process.env.PUBLIC_URL}/images/Review-none.svg`}
             alt="리뷰"
           />
           <div id="reviewname">리뷰 작성</div>
-        </M.Review>
+        </M.Review> */}
         <M.Recom onClick={gorec}>
           <img
             id="recom"
@@ -155,13 +192,6 @@ const Main = () => {
           />
           <div id="myname">마이페이지</div>
         </M.My>
-        <M.Set>
-          <img
-            id="setting"
-            src={`${process.env.PUBLIC_URL}/images/Setting-none.svg`}
-            alt="설정"
-          />
-        </M.Set>
       </M.Nav>
 
       <M.ContentArea>
@@ -185,13 +215,14 @@ const Main = () => {
         </M.MapArea>
       </M.ContentArea>
 
-      {modalVisible && !showRecomModal && ( // RecomModal이 아닌 경우에만 MainModal을 보여줌
-        <MainModal 
-          content={modalContent} 
-          onClose={() => setModalVisible(false)} 
-          setShowRecomModal={setShowRecomModal} // RecomModal 띄우기 위한 함수 전달
-        />
-      )}
+      {modalVisible &&
+        !showRecomModal && ( // RecomModal이 아닌 경우에만 MainModal을 보여줌
+          <MainModal
+            content={modalContent}
+            onClose={() => setModalVisible(false)}
+            setShowRecomModal={setShowRecomModal} // RecomModal 띄우기 위한 함수 전달
+          />
+        )}
 
       {showRecomModal && (
         <RecomModal onClose={() => setShowRecomModal(false)} />
